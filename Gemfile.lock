@@ -93,6 +93,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.23)
     multi_json (1.7.7)
+    pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -190,6 +191,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   libnotify
+  pg
   rails (= 3.2.13)
   rspec-rails
   sass-rails (~> 3.2.3)
