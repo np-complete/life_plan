@@ -1,0 +1,6 @@
+- if user_signed_in?
+  welcome,
+  = current_user.name
+- else
+  = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+

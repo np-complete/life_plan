@@ -5,6 +5,9 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 
+gem 'devise'
+gem 'omniauth-google-oauth2'
+
 group :assets do
   gem 'less-rails'
   gem 'sass-rails',   '~> 3.2.3'
