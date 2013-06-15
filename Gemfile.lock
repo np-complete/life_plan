@@ -109,8 +109,11 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
+    mini_portile (0.5.0)
     multi_json (1.7.7)
     multipart-post (1.2.0)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -235,6 +238,7 @@ DEPENDENCIES
   jquery-rails
   less-rails
   libnotify
+  nokogiri
   omniauth-google-oauth2
   pg
   rails (= 3.2.13)

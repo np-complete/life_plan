@@ -10,6 +10,7 @@ gem 'devise'
 gem 'omniauth-google-oauth2'
 
 gem 'rest-client'
+gem 'nokogiri'
 
 group :assets do
   gem 'less-rails'
