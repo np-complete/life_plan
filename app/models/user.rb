@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :provider, :uid, :name
 
+  has_many :user_channels
+  has_many :channels, :through => :user_channels
+
   def self.find_for_google_oauth2(access_token, current_user)
     data = access_token.info
     user = User.where(provider: 'google', uid: access_token[:uid]).first
