@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615060620) do
+ActiveRecord::Schema.define(:version => 20130615095711) do
+
+  create_table "channel_groups", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["name"], :name => "index_channel_groups_on_name", :unique => true
+  end
+
+  create_table "channels", :force => true do |t|
+    t.integer  "channel_group_id", :null => false
+    t.string   "name",             :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.index ["channel_group_id"], :name => "index_channels_on_channel_group_id"
+    t.foreign_key ["channel_group_id"], "channel_groups", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_channels_channel_group_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "provider",   :null => false
@@ -19,8 +35,18 @@ ActiveRecord::Schema.define(:version => 20130615060620) do
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.index ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true
   end
 
-  add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true
+  create_table "user_channels", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "channel_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["channel_id", "user_id"], :name => "index_user_channels_on_channel_id_and_user_id", :unique => true
+    t.index ["user_id"], :name => "fk__user_channels_user_id"
+    t.foreign_key ["channel_id"], "channels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_user_channels_channel_id"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_user_channels_user_id"
+  end
 
 end

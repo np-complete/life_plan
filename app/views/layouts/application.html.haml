@@ -19,24 +19,16 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") LifePlan
+          %a.brand(href="/") LifePlan
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Link 1", "/path1"
+              %li= link_to "チャンネル設定", :channels
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
 
     .container-fluid
-
       .row-fluid
-        .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-        .span9
+        .span12
           = bootstrap_flash
           = yield
 

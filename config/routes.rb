@@ -1,5 +1,8 @@
 LifePlan::Application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :channels, :only => [:index, :create, :update, :destroy]
+
   root :to => "top#index"
 
   # The priority is based upon order of creation:
