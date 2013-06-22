@@ -5,7 +5,7 @@
     - @channel_groups.each do |channel_group|
       %li(data-toggle="tab")
         = link_to channel_group.name, "#group_#{channel_group.id}", "data-toggle" => "tab"
-  .tab-content
+  .tab-content#channel-list
     - @channel_groups.each do |channel_group|
       .tab-pane(id="group_#{channel_group.id}")
         %h4= channel_group.name
