@@ -22,9 +22,27 @@
           %a.brand(href="/") LifePlan
           .container.nav-collapse
             %ul.nav
-              %li= link_to "チャンネル設定", :channels
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
+              - if user_signed_in?
+                %li
+                  = link_to :channels do
+                    %i.icon-cog
+                    チャンネル設定
+            - if user_signed_in?
+              %ul.nav.pull-right
+                %li.dropdown
+                  %a.dropdown-toggle(href="#" data-toggle="dropdown")
+                    %i.icon-user
+                    = current_user.name
+                    .caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to :sign_out do
+                        %i.icon-remove
+                        Sign out
+            - else
+              .nav.pull-right
+                = link_to user_omniauth_authorize_path(:google_oauth2) do
+                  %button.btn.btn-danger Sign in with Google
 
     .container-fluid
       .row-fluid
