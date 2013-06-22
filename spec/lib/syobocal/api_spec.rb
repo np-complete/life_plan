@@ -22,6 +22,19 @@ describe Syobocal::API do
 
   describe :programs do
     subject { Syobocal::API.programs }
+    describe :titles do
+      it 'create titles' do
+        expect{ Syobocal::API.programs }.to change(Title, :count)
+      end
+
+      it 'update title' do
+        Syobocal::API.programs
+        title = Title.first
+        title.update_attributes(:name => 'foo')
+        Syobocal::API.programs
+        expect(Title.first.name).not_to eq title.name
+      end
+    end
     it { should be_a Array }
   end
 end

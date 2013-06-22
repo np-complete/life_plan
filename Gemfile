@@ -12,6 +12,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'rest-client'
 gem 'nokogiri'
+gem 'kaminari'
 
 group :assets do
   gem 'less-rails'
