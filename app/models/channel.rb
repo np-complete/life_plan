@@ -5,6 +5,8 @@ class Channel < ActiveRecord::Base
 
   belongs_to :channel_group
 
+  default_scope order(:id)
+
   def self.fetch_all
     Channel.destroy_all
     ChannelGroup.destroy_all
