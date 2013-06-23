@@ -58,8 +58,14 @@
           = bootstrap_flash
           = yield
 
-      %footer
-        %p &copy; Company 2013
+      %footer.pull-right
+        %p
+          &copy; masarakki
+          %br
+          %strong Contact
+          = link_to "twitter", "http://twitter.com/masarakki"
+          \/
+          = mail_to "masarakki@np-complete-doj.in", "mail"
     /
       Javascripts
       \==================================================
