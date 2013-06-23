@@ -6,7 +6,7 @@ LifePlan::Application.routes.draw do
   resources :channels, :only => [:index, :create, :update, :destroy]
   resources :titles, :only => [:index]
 
-  root :to => "top#index"
+  root :to => "programs#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

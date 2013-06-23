@@ -22,6 +22,10 @@
           %a.brand(href="/") LifePlan
           .container.nav-collapse
             %ul.nav
+              %li
+                = link_to :root do
+                  %i.icon-list-alt
+                  スケジュール
               - if user_signed_in?
                 %li
                   = link_to :channels do

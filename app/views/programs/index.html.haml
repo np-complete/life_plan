@@ -1,0 +1,12 @@
+%h1 今日のスケジュール
+
+%table.table.table-striped
+  %tr
+    %th 放送時刻
+    %th タイトル
+    %th チャンネル
+  - @programs.each do |program|
+    %tr
+      %td= anime_time_format program.start_at
+      %td= program.title.name
+      %td= program.channel.name
