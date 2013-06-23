@@ -36,4 +36,7 @@ group :development, :test do
   gem 'libnotify'
 
   gem 'factory_girl_rails'
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
 end

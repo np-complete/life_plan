@@ -136,6 +136,11 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-doc (0.4.6)
+      pry (>= 0.9)
+      yard (>= 0.8)
+    pry-rails (0.3.1)
+      pry (>= 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -223,6 +228,7 @@ GEM
     valuable (0.9.8)
     warden (1.2.1)
       rack (>= 1.0)
+    yard (0.8.6.1)
 
 PLATFORMS
   ruby
@@ -241,6 +247,9 @@ DEPENDENCIES
   mysql2
   nokogiri
   omniauth-google-oauth2
+  pry
+  pry-doc
+  pry-rails
   rails (= 3.2.13)
   rest-client
   rspec-rails
