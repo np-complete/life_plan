@@ -3,7 +3,9 @@ module ProgramsHelper
     classes = ["program"]
     if user_signed_in?
       classes << "hide"
-      classes << "watchable" if @channel_ids.include?(program.channel_id)
+      if @channel_ids.include?(program.channel_id)
+        classes << (@title_ids.include?(program.title_id) ? "watching" : "watchable")
+      end
     end
     content_tag(:tr, :class => classes.join(" "), &block)
   end

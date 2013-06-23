@@ -6,14 +6,16 @@
       %button.btn#show-watchable Myチャンネル
       %button.btn#show-all 全部見る
 
-%table.table.table-striped
-  %tr
-    %th 放送時刻
-    %th チャンネル
-    %th(colspan=2) タイトル
-  - @programs.each do |program|
-    = program_row(program) do
-      %td= anime_time_format program.start_at
-      %td= program.channel.name
-      %td= program.title.name
-      %td= "##{program.no} #{program.subtitle}"
+%table.table.table-hover
+  %thead
+    %tr
+      %th 放送時刻
+      %th チャンネル
+      %th(colspan=2) タイトル
+  %tbody
+    - @programs.each do |program|
+      = program_row(program) do
+        %td= anime_time_format program.start_at
+        %td= program.channel.name
+        %td= program.title.name
+        %td= "##{program.no} #{program.subtitle}"

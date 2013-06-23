@@ -16,10 +16,16 @@ describe ProgramsController do
       let(:user) { FactoryGirl.create(:user) }
       before { sign_in user }
 
-      it "assigns user's channels as @channels" do
+      it "assigns user's watchable channel ids as @channels" do
         channel_ids = FactoryGirl.create_list(:user_channel, 3, user: user).map(&:channel_id)
         get :index
         expect(assigns[:channel_ids]).to eq channel_ids
+      end
+
+      it "assigns user's watching title ids as @title_ids" do
+        title_ids = FactoryGirl.create_list(:watching, 3, user: user).map(&:title_id)
+        get :index
+        expect(assigns[:title_ids]).to eq title_ids
       end
     end
   end
