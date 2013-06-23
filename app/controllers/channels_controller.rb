@@ -1,7 +1,7 @@
 class ChannelsController < ApplicationController
   def index
     @channel_groups = ChannelGroup.includes(:channels)
-    @user_channels = current_user.channels
+    @user_channel_ids = current_user.channels.map(&:id)
   end
 
   def create

@@ -6,12 +6,14 @@ gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'schema_plus'
+gem 'redis'
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
 
 gem 'rest-client'
 gem 'nokogiri'
+gem 'kaminari'
 
 group :assets do
   gem 'less-rails'

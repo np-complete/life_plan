@@ -6,8 +6,6 @@ $(document).ready ->
             url: "/channels/#{channel_id}",
             method: method
         }
-    for channel_id in assign_channel_ids
-        $("button[channel-id=#{channel_id}]").button("toggle")
     $("#channel-group a:first").tab("show")
     $("#channel-group a").click (e) ->
         $(this).tab("show")

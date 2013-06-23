@@ -22,11 +22,19 @@
           %a.brand(href="/") LifePlan
           .container.nav-collapse
             %ul.nav
+              %li
+                = link_to :root do
+                  %i.icon-list-alt
+                  スケジュール
               - if user_signed_in?
                 %li
                   = link_to :channels do
                     %i.icon-cog
                     チャンネル設定
+                %li
+                  = link_to :titles do
+                    %i.icon-cog
+                    番組設定
             - if user_signed_in?
               %ul.nav.pull-right
                 %li.dropdown
