@@ -12,10 +12,10 @@ describe ChannelsController do
       expect(assigns[:channel_groups]).to eq channel_groups
     end
 
-    it "assigns user's channels as @user_channels" do
+    it "assigns user's channels as @user_channel_ids" do
       user_channels = FactoryGirl.create_list(:user_channel, 3, user: @user)
       get :index
-      expect(assigns[:user_channels]).to eq user_channels.map(&:channel)
+      expect(assigns[:user_channel_ids]).to eq user_channels.map(&:channel_id)
     end
   end
 

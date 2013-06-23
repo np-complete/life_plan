@@ -10,7 +10,7 @@
       .tab-pane(id="group_#{channel_group.id}")
         %h4= channel_group.name
         - channel_group.channels.each do |channel|
-          %button.btn.span3.channel-toggle(channel-id="#{channel.id}" data-toggle="button")= channel.name
-
-  :javascript
-    assign_channel_ids = #{@user_channels.map(&:id)}
+          - if @user_channel_ids.include?(channel.id)
+            %button.btn.span3.channel-toggle.active(channel-id="#{channel.id}" data-toggle="button")= channel.name
+          - else
+            %button.btn.span3.channel-toggle(channel-id="#{channel.id}" data-toggle="button")= channel.name
