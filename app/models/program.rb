@@ -39,4 +39,14 @@ class Program
 
     programs
   end
+
+  def as_json(options = nil)
+    {
+      channel: channel.name,
+      start_at: start_at.to_i,
+      title: title.name,
+      no: no,
+      subtitle: subtitle
+    }
+  end
 end

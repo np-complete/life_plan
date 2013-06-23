@@ -1,0 +1,14 @@
+%h2.page-header 利用中アプリケーション
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Application
+      %th Authorized at
+      %th
+  %tbody
+    - @applications.each do |application|
+      %tr
+        %td= application.name
+        %td= application.created_at
+        %td= link_to '取り消す', oauth_authorized_application_path(application), :data => { :confirm => 'Are you sure?' }, :method => :delete, :class => 'btn danger'

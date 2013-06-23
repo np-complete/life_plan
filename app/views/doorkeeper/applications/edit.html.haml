@@ -1,0 +1,10 @@
+%h2.page-header Edit application
+
+.row-fluid
+  .span8
+    = render 'form', :application => @application
+  .span4
+    %h3 Actions
+    = link_to 'Back to application list', oauth_applications_path
+
+
