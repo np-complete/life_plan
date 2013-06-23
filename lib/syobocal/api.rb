@@ -17,13 +17,14 @@ module Syobocal
       end
 
       def programs
-        query = { :Req => "ProgramByDate,TitleMedium",
+        query = { :Req => "ProgramByDate,TitleMedium,SubTitles",
           :Start => Date.today.to_s,
           :Days => 1 }.to_query
         response = RestClient.get "http://cal.syoboi.jp/json?#{query}"
         raise unless response.code == 200
         json = JSON.parse(response.body)
 
+        subtitles = json["SubTitles"]
         titles = json["Titles"].map(&:last).map do |title|
           title_hash = {
             id: title["TID"].to_i,
@@ -56,9 +57,12 @@ module Syobocal
           program_hash = {
             id: program["PID"].to_i,
             title_id: program["TID"].to_i,
+            no: program["Count"].to_i,
             channel_id: program["ChID"].to_i,
             start_at: Time.at(program["StTime"].to_i)
           }
+          subtitle = subtitles.try(:[], program_hash[:title_id].to_s).try(:[], program_hash[:no].to_s)
+          program_hash[:subtitle] = subtitle unless subtitle.blank?
           OpenStruct.new(program_hash)
         end
       end
