@@ -1,4 +1,10 @@
-%h1 今日のスケジュール
+.clearfix
+  %h1.pull-left 今日のスケジュール
+  - if user_signed_in?
+    #program-controls.pull-right.btn-group(data-toggle="buttons-radio")
+      %button.btn.active#show-watching My番組表
+      %button.btn#show-watchable Myチャンネル
+      %button.btn#show-all 全部見る
 
 %table.table.table-striped
   %tr
@@ -6,7 +12,7 @@
     %th チャンネル
     %th(colspan=2) タイトル
   - @programs.each do |program|
-    %tr
+    = program_row(program) do
       %td= anime_time_format program.start_at
       %td= program.channel.name
       %td= program.title.name

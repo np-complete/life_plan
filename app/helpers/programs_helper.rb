@@ -1,4 +1,13 @@
 module ProgramsHelper
+  def program_row(program, &block)
+    classes = ["program"]
+    if user_signed_in?
+      classes << "hide"
+      classes << "watchable" if @channel_ids.include?(program.channel_id)
+    end
+    content_tag(:tr, :class => classes.join(" "), &block)
+  end
+
   def anime_time_format(time)
     hour = time.hour
     day = time.day
