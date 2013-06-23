@@ -4,7 +4,7 @@ LifePlan::Application.routes.draw do
   end
 
   resources :channels, :only => [:index, :create, :update, :destroy]
-  resources :titles, :only => [:index]
+  resources :titles, :only => [:index, :update, :destroy]
 
   root :to => "programs#index"
 

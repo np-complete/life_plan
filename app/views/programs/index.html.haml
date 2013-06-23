@@ -12,6 +12,8 @@
       %th 放送時刻
       %th チャンネル
       %th(colspan=2) タイトル
+      - if user_signed_in?
+        %th My番組表
   %tbody
     - @programs.each do |program|
       = program_row(program) do
@@ -19,3 +21,8 @@
         %td= program.channel.name
         %td= program.title.name
         %td= "##{program.no} #{program.subtitle}"
+        - if user_signed_in?
+          %td= toggle_watch_button(program)
+
+
+
