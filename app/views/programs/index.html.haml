@@ -1,0 +1,28 @@
+.clearfix
+  %h1.pull-left 今日のスケジュール
+  - if user_signed_in?
+    #program-controls.pull-right.btn-group(data-toggle="buttons-radio")
+      %button.btn.active#show-watching My番組表
+      %button.btn#show-watchable Myチャンネル
+      %button.btn#show-all 全部見る
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th 放送時刻
+      %th チャンネル
+      %th(colspan=2) タイトル
+      - if user_signed_in?
+        %th My番組表
+  %tbody
+    - @programs.each do |program|
+      = program_row(program) do
+        %td= anime_time_format program.start_at
+        %td= program.channel.name
+        %td= program.title.name
+        %td= "##{program.no} #{program.subtitle}"
+        - if user_signed_in?
+          %td= toggle_watch_button(program)
+
+
+

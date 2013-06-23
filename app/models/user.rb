@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
 
   has_many :user_channels
   has_many :channels, :through => :user_channels
+  has_many :watchings
+  has_many :titles, :through => :watchings
 
   def self.find_for_google_oauth2(access_token, current_user)
     data = access_token.info

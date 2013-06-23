@@ -1,0 +1,7 @@
+%h1 番組設定
+
+= paginate @titles
+%table.table.table-striped
+  - @titles.each do |title|
+    %tr
+      %td= title.name

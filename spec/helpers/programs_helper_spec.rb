@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe TopHelper do
+describe ProgramsHelper do
 end

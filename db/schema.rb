@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615095711) do
+ActiveRecord::Schema.define(:version => 20130623180512) do
 
   create_table "channel_groups", :force => true do |t|
     t.string   "name",       :null => false
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20130615095711) do
     t.datetime "updated_at",       :null => false
     t.index ["channel_group_id"], :name => "index_channels_on_channel_group_id"
     t.foreign_key ["channel_group_id"], "channel_groups", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_channels_channel_group_id"
+  end
+
+  create_table "titles", :force => true do |t|
+    t.string   "name",        :null => false
+    t.string   "kana"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -47,6 +56,18 @@ ActiveRecord::Schema.define(:version => 20130615095711) do
     t.index ["user_id"], :name => "fk__user_channels_user_id"
     t.foreign_key ["channel_id"], "channels", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_user_channels_channel_id"
     t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_user_channels_user_id"
+  end
+
+  create_table "watchings", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "title_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["user_id", "title_id"], :name => "index_watchings_on_user_id_and_title_id", :unique => true
+    t.index ["title_id"], :name => "fk__watchings_title_id"
+    t.index ["user_id"], :name => "fk__watchings_user_id"
+    t.foreign_key ["title_id"], "titles", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_watchings_title_id"
+    t.foreign_key ["user_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_watchings_user_id"
   end
 
 end
