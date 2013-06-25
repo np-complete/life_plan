@@ -27,6 +27,7 @@ gem 'jquery-rails'
 
 group :production do
   gem 'mysql2'
+  gem 'unicorn'
 end
 
 group :development, :test do
