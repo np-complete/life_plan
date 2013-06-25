@@ -1,8 +1,12 @@
 module Syobocal
   class API
     class << self
+      def ua
+        %{A Life Planner; https://life-plan.np-complete-doj.in}
+      end
+
       def channels
-        response = RestClient.get "http://cal.syoboi.jp/mng?Action=ShowChList"
+        response = RestClient.get "http://cal.syoboi.jp/mng?Action=ShowChList", user_agent: ua
         raise unless response.code == 200
         nokogiri = Nokogiri::HTML(response)
         nokogiri.css("table.tframe.output:eq(2) tr").map do |x|
@@ -20,7 +24,7 @@ module Syobocal
         query = { :Req => "ProgramByDate,TitleMedium,SubTitles",
           :Start => Date.today.to_s,
           :Days => 1 }.to_query
-        response = RestClient.get "http://cal.syoboi.jp/json?#{query}"
+        response = RestClient.get "http://cal.syoboi.jp/json?#{query}", user_agent: ua
         raise unless response.code == 200
         json = JSON.parse(response.body)
 
