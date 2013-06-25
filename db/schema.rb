@@ -53,8 +53,6 @@ ActiveRecord::Schema.define(:version => 20130623211048) do
     t.index ["refresh_token"], :name => "index_oauth_access_tokens_on_refresh_token", :unique => true
     t.index ["resource_owner_id"], :name => "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], :name => "index_oauth_access_tokens_on_token", :unique => true
-    t.index ["resource_owner_id"], :name => "fk__oauth_access_tokens_resource_owner_id"
-    t.foreign_key ["resource_owner_id"], "resource_owners", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_tokens_resource_owner_id"
   end
 
   create_table "oauth_applications", :force => true do |t|
