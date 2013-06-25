@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623180512) do
+ActiveRecord::Schema.define(:version => 20130623211048) do
 
   create_table "channel_groups", :force => true do |t|
     t.string   "name",       :null => false
@@ -27,6 +27,55 @@ ActiveRecord::Schema.define(:version => 20130623180512) do
     t.datetime "updated_at",       :null => false
     t.index ["channel_group_id"], :name => "index_channels_on_channel_group_id"
     t.foreign_key ["channel_group_id"], "channel_groups", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_channels_channel_group_id"
+  end
+
+  create_table "oauth_access_grants", :force => true do |t|
+    t.integer  "resource_owner_id", :null => false
+    t.integer  "application_id",    :null => false
+    t.string   "token",             :null => false
+    t.integer  "expires_in",        :null => false
+    t.string   "redirect_uri",      :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "revoked_at"
+    t.string   "scopes"
+    t.index ["token"], :name => "index_oauth_access_grants_on_token", :unique => true
+    t.index ["application_id"], :name => "fk__oauth_access_grants_application_id"
+    t.index ["resource_owner_id"], :name => "fk__oauth_access_grants_resource_owner_id"
+    t.foreign_key ["application_id"], "applications", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_grants_application_id"
+    t.foreign_key ["resource_owner_id"], "resource_owners", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_grants_resource_owner_id"
+  end
+
+  create_table "oauth_access_tokens", :force => true do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id",    :null => false
+    t.string   "token",             :null => false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",        :null => false
+    t.string   "scopes"
+    t.index ["refresh_token"], :name => "index_oauth_access_tokens_on_refresh_token", :unique => true
+    t.index ["resource_owner_id"], :name => "index_oauth_access_tokens_on_resource_owner_id"
+    t.index ["token"], :name => "index_oauth_access_tokens_on_token", :unique => true
+    t.index ["application_id"], :name => "fk__oauth_access_tokens_application_id"
+    t.index ["resource_owner_id"], :name => "fk__oauth_access_tokens_resource_owner_id"
+    t.foreign_key ["application_id"], "applications", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_tokens_application_id"
+    t.foreign_key ["resource_owner_id"], "resource_owners", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_tokens_resource_owner_id"
+  end
+
+  create_table "oauth_applications", :force => true do |t|
+    t.string   "name",         :null => false
+    t.string   "uid",          :null => false
+    t.string   "secret",       :null => false
+    t.string   "redirect_uri", :null => false
+    t.integer  "owner_id",     :null => false
+    t.string   "owner_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.index ["owner_id", "owner_type"], :name => "index_oauth_applications_on_owner_id_and_owner_type"
+    t.index ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
+    t.index ["owner_id"], :name => "fk__oauth_applications_owner_id"
+    t.foreign_key ["owner_id"], "owners", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_applications_owner_id"
   end
 
   create_table "titles", :force => true do |t|

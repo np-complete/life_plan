@@ -10,6 +10,7 @@ gem 'redis'
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
+gem 'doorkeeper'
 
 gem 'rest-client'
 gem 'nokogiri'

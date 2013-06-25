@@ -1,0 +1,26 @@
+= form_for [:oauth, application], :html => {:class => 'form form-horizontal'} do |f|
+  - if application.errors.any?
+    .alert-message.error(data-alert="data-alert")
+      %a.close(href="#")
+        ×
+      %p Whoops! Check your form for possible errors
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'input-large'
+      = errors_for application, :name
+  .control-group
+    = f.label :redirect_uri, :class => 'control-label'
+    .controls
+      = f.text_field :redirect_uri, :class => 'input-large'
+      = errors_for application, :redirect_uri
+      - if Doorkeeper.configuration.test_redirect_uri
+        %span.help-inline
+          Use
+          = Doorkeeper.configuration.test_redirect_uri
+          for local tests
+
+  .form-actions
+    = f.submit :Submit, :class => "btn btn-primary"
+    = link_to "Cancel", oauth_applications_path, :class => "btn"
+
