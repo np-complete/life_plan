@@ -1,10 +1,22 @@
 LifePlan::Application.routes.draw do
+  use_doorkeeper do
+    controllers :applications => 'oauth/applications'
+  end
+
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks" } do
     get 'sign_out', :to => 'devise/sessions#destroy'
   end
 
   resources :channels, :only => [:index, :create, :update, :destroy]
   resources :titles, :only => [:index, :update, :destroy]
+  resource :api, :only => [:show]
+
+  namespace :api do
+    get '/v1', :to => "documents#v1"
+    namespace :v1, :format => :json do
+      resources :programs, :only => [:index]
+    end
+  end
 
   root :to => "programs#index"
 

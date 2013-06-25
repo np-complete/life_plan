@@ -26,6 +26,10 @@
                 = link_to :root do
                   %i.icon-list-alt
                   スケジュール
+              %li
+                = link_to :api_v1 do
+                  %i.icon-file
+                  API
               - if user_signed_in?
                 %li
                   = link_to :channels do
@@ -43,6 +47,10 @@
                     = current_user.name
                     .caret
                   %ul.dropdown-menu
+                    %li
+                      = link_to :oauth_authorized_applications do
+                        %i.icon-wrench
+                        アプリケーション
                     %li
                       = link_to :sign_out do
                         %i.icon-remove

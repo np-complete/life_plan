@@ -1,0 +1,38 @@
+.span8
+  %h1 API Document # Ver.1
+
+  .lead
+    = link_to "OAuth 2.0", "http://tools.ietf.org/html/rfc6749"
+    でアクセスして番組表を取得できます
+
+  %h3 アプリケーション管理
+  %dl
+    %dt= link_to "管理コンソール", :oauth_applications
+    %dd アプリケーションの登録、 APP_ID / APP_SECRET の閲覧などができます
+
+  %h3 OAuth 認証エンドポイント
+  %dl
+    %dt Authorization
+    %dd
+      %pre= "POST " + oauth_authorization_url
+    %dt Access Token
+    %dd
+      %pre= "POST " + oauth_token_url
+
+  %h3 リソースアクセス
+
+  %h4#doc-programs 番組表
+  %dl
+    %dt url
+    %dd
+      %code= "GET " + api_v1_programs_url(:format => :json)
+    %dt response
+    %dd
+      %pre.prettyprint= JSON.pretty_unparse @programs
+
+.span4
+  .affix.well
+    %ul.nav.nav-pills.nav-stacked
+      %li.nav-header Document of Protected Resources
+      %li= link_to "番組表", "#doc-programs"
+
