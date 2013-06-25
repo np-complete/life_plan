@@ -39,10 +39,6 @@ ActiveRecord::Schema.define(:version => 20130623211048) do
     t.datetime "revoked_at"
     t.string   "scopes"
     t.index ["token"], :name => "index_oauth_access_grants_on_token", :unique => true
-    t.index ["application_id"], :name => "fk__oauth_access_grants_application_id"
-    t.index ["resource_owner_id"], :name => "fk__oauth_access_grants_resource_owner_id"
-    t.foreign_key ["application_id"], "applications", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_grants_application_id"
-    t.foreign_key ["resource_owner_id"], "resource_owners", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_grants_resource_owner_id"
   end
 
   create_table "oauth_access_tokens", :force => true do |t|
@@ -57,19 +53,8 @@ ActiveRecord::Schema.define(:version => 20130623211048) do
     t.index ["refresh_token"], :name => "index_oauth_access_tokens_on_refresh_token", :unique => true
     t.index ["resource_owner_id"], :name => "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], :name => "index_oauth_access_tokens_on_token", :unique => true
-    t.index ["application_id"], :name => "fk__oauth_access_tokens_application_id"
     t.index ["resource_owner_id"], :name => "fk__oauth_access_tokens_resource_owner_id"
-    t.foreign_key ["application_id"], "applications", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_tokens_application_id"
     t.foreign_key ["resource_owner_id"], "resource_owners", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_access_tokens_resource_owner_id"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.index ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true
   end
 
   create_table "oauth_applications", :force => true do |t|
@@ -83,8 +68,6 @@ ActiveRecord::Schema.define(:version => 20130623211048) do
     t.datetime "updated_at",   :null => false
     t.index ["owner_id", "owner_type"], :name => "index_oauth_applications_on_owner_id_and_owner_type"
     t.index ["uid"], :name => "index_oauth_applications_on_uid", :unique => true
-    t.index ["owner_id"], :name => "fk__oauth_applications_owner_id"
-    t.foreign_key ["owner_id"], "users", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_oauth_applications_owner_id"
   end
 
   create_table "titles", :force => true do |t|
@@ -94,6 +77,15 @@ ActiveRecord::Schema.define(:version => 20130623211048) do
     t.datetime "finished_at"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.index ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true
   end
 
   create_table "user_channels", :force => true do |t|
