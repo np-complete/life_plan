@@ -5,7 +5,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration
       t.string  :uid,          :null => false
       t.string  :secret,       :null => false
       t.string  :redirect_uri, :null => false
-      t.integer :owner_id,     :null => false
+      t.integer :owner_id,     :null => false, foreign_key: { :references => :users }
       t.string  :owner_type,   :null => true
       t.timestamps
     end
