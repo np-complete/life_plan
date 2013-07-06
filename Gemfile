@@ -16,6 +16,8 @@ gem 'rest-client'
 gem 'nokogiri'
 gem 'kaminari'
 
+gem 'rack-google-analytics'
+
 group :assets do
   gem 'less-rails'
   gem 'sass-rails',   '~> 3.2.3'
