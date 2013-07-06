@@ -58,7 +58,10 @@
             - else
               .nav.pull-right
                 = link_to user_omniauth_authorize_path(:google_oauth2) do
-                  %button.btn.btn-danger Sign in with Google
+                  .btn-group
+                    %button.btn.btn-danger
+                      %i.icon-google-plus
+                      Sign in with Google
 
     .container-fluid
       .row-fluid
