@@ -35,10 +35,10 @@ module Syobocal
             name: title["Title"],
             kana: title["TitleYomi"]
           }
-          unless title["FirstYear"].blank?
+          unless title["FirstYear"].blank? || title["FirstMonth"].blank?
             title_hash[:started_at] = DateTime.new(title["FirstYear"].to_i, title["FirstMonth"].to_i, 1).beginning_of_month
           end
-          unless title["FirstEndYear"].blank?
+          unless title["FirstEndYear"].blank? || title["FirstEndMonth"].blank?
             title_hash[:finished_at] =DateTime.new(title["FirstEndYear"].to_i, title["FirstEndMonth"].to_i, 1).end_of_month
           end
           OpenStruct.new(title_hash)
