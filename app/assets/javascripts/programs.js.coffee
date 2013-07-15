@@ -1,16 +1,16 @@
 $(document).ready ->
     cleaning = ->
-        $(".program").hide().removeClass("info").removeClass("warning").removeClass("success")
+        $(".program").removeClass("info").removeClass("warning").removeClass("success")
     $("#show-watching").click (e) ->
         cleaning()
-        $(".watching.watchable").show().removeClass("info").removeClass("warning")
+        $("#programs").attr("class", "my-programs")
     $("#show-watchable").click (e) ->
         cleaning()
+        $("#programs").attr("class", "my-channels")
         $(".watching").addClass("info")
-        $(".watchable").show()
     $("#show-all").click (e) ->
         cleaning()
-        $(".program").show()
+        $("#programs").attr("class", "all-programs")
         $(".program.watchable").addClass("warning")
         $(".program.watching").addClass("info")
         $(".program.watching.watchable").removeClass("info").removeClass("warning").addClass("success")
