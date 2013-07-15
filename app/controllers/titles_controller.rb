@@ -1,6 +1,7 @@
 class TitlesController < ApplicationController
   def index
     @titles = Title.page params[:page]
+    @titles = @titles.begin_with params[:initial] if params[:initial]
 
     respond_to do |format|
       format.html
