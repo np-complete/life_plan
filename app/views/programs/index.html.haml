@@ -14,7 +14,7 @@
       %th(colspan=2) タイトル
       - if user_signed_in?
         %th My番組表
-  %tbody
+  %tbody#programs{'class' => user_signed_in? ? 'my-programs' : 'all-programs'}
     - @programs.each do |program|
       = program_row(program) do
         %td= anime_time_format program.start_at

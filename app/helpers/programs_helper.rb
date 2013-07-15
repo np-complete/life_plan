@@ -3,7 +3,6 @@ module ProgramsHelper
   def program_row(program, &block)
     classes = ["program", "title_#{program.title_id}"]
     if user_signed_in?
-      classes << "hide"
       classes << "watchable" if @channel_ids.include?(program.channel_id)
       classes << "watching" if @title_ids.include?(program.title_id)
     end
