@@ -1,19 +1,28 @@
 $(document).ready ->
     cleaning = ->
         $(".program").removeClass("info").removeClass("warning").removeClass("success")
+    track_toggle = (val) ->
+        _gaq.push ['_trackEvent', 'change-programs', "show-#{val}"]
+
     $("#show-watching").click (e) ->
         cleaning()
+        track_toggle 'programs'
         $("#programs").attr("class", "my-programs")
+
     $("#show-watchable").click (e) ->
         cleaning()
+        track_toggle 'channels'
         $("#programs").attr("class", "my-channels")
         $(".watching").addClass("info")
+
     $("#show-all").click (e) ->
         cleaning()
+        track_toggle 'all'
         $("#programs").attr("class", "all-programs")
         $(".program.watchable").addClass("warning")
         $(".program.watching").addClass("info")
         $(".program.watching.watchable").removeClass("info").removeClass("warning").addClass("success")
+
     update_toggle_button = ->
         $(".toggle-watch").text("追加する")
         $(".toggle-watch.active").text("追加済み")
