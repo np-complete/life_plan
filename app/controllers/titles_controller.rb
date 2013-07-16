@@ -1,7 +1,14 @@
 class TitlesController < ApplicationController
   def index
     @titles = Title.page params[:page]
-    @titles = @titles.begin_with params[:initial] if params[:initial]
+
+    case params[:initial]
+    when 'all'
+    when nil, 'current'
+      @titles = @titles.unfinished
+    else
+      @titles = @titles.begin_with params[:initial] if params[:initial]
+    end
 
     @watching_ids = current_user.titles.where(id: @titles.map(&:id)).map(&:id)
 

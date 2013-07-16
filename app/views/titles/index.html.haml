@@ -3,7 +3,8 @@
 .tabbable.tabs-left
   %ul#title-group.nav.nav-tabs
     %li
-      = link_to 'all', :titles
+      = link_to 'current', titles_path
+      = link_to 'all', initial_titles_path('all')
     - %w{あ か さ た な は ま や ら わ}.each do |initial|
       %li
         = link_to initial, initial_titles_path(initial)
