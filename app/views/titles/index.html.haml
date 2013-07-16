@@ -1,7 +1,24 @@
 %h1 番組設定
 
-= paginate @titles
-%table.table.table-striped
-  - @titles.each do |title|
-    %tr
-      %td= title.name
+.tabbable.tabs-left
+  %ul#title-group.nav.nav-tabs
+    %li
+      = link_to 'current', titles_path
+      = link_to 'all', initial_titles_path('all')
+    - %w{あ か さ た な は ま や ら わ}.each do |initial|
+      %li
+        = link_to initial, initial_titles_path(initial)
+
+  .tab-content
+    = paginate @titles
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th タイトル
+          %th My番組表
+      %tbody
+        - @titles.each do |title|
+          %tr
+            %td= title.name
+            %td= toggle_watch_button(title, @watching_ids)

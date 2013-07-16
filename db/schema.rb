@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623211048) do
+ActiveRecord::Schema.define(:version => 20130715231258) do
 
   create_table "channel_groups", :force => true do |t|
     t.string   "name",       :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20130623211048) do
     t.datetime "finished_at"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.index ["kana"], :name => "index_titles_on_kana"
   end
 
   create_table "users", :force => true do |t|
