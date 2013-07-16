@@ -14,9 +14,24 @@ describe TitlesController do
       expect(assigns(:titles)).to eq titles
     end
 
+    it "assigns ids of watching title as @watching_ids" do
+      titles = [
+        FactoryGirl.create(:title, :kana => 'あああ'),
+        FactoryGirl.create(:title, :kana => 'いいい')
+      ]
+      others = FactoryGirl.create(:title, :kana => 'かかか')
+      FactoryGirl.create(:watching, user: @user, title: titles.first)
+      FactoryGirl.create(:watching, user: @user, title: others)
+      get :index, :initial => 'あ'
+      expect(assigns(:watching_ids)).to eq [titles.first.id]
+    end
+
     context :with_initial do
       it "assigns matched titles as @titles" do
-        titles = [FactoryGirl.create(:title, :kana => 'あああ'), FactoryGirl.create(:title, :kana => 'いいい')]
+        titles = [
+          FactoryGirl.create(:title, :kana => 'あああ'),
+          FactoryGirl.create(:title, :kana => 'いいい')
+        ]
         others = FactoryGirl.create(:title, :kana => 'かかか')
         get :index, :initial => 'あ'
         expect(assigns(:titles)).to eq titles

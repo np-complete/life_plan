@@ -3,6 +3,8 @@ class TitlesController < ApplicationController
     @titles = Title.page params[:page]
     @titles = @titles.begin_with params[:initial] if params[:initial]
 
+    @watching_ids = current_user.titles.where(id: @titles.map(&:id)).map(&:id)
+
     respond_to do |format|
       format.html
     end
