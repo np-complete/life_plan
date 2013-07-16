@@ -16,13 +16,13 @@
         %th My番組表
   %tbody#programs{'class' => user_signed_in? ? 'my-programs' : 'all-programs'}
     - @programs.each do |program|
-      = program_row(program) do
+      = program_row(program, @title_ids, @channel_ids) do
         %td= anime_time_format program.start_at
         %td= program.channel.name
         %td= program.title.name
         %td= "##{program.no} #{program.subtitle}"
         - if user_signed_in?
-          %td= toggle_watch_button(program)
+          %td= toggle_watch_button(program.title, @title_ids)
 
 
 

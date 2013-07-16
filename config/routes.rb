@@ -8,7 +8,9 @@ LifePlan::Application.routes.draw do
   end
 
   resources :channels, :only => [:index, :create, :update, :destroy]
-  resources :titles, :only => [:index, :update, :destroy]
+  resources :titles, :only => [:index, :update, :destroy] do
+    match ':initial', :to => "titles#index", :on => :collection, :via => :get, :as => :initial
+  end
   resource :api, :only => [:show]
 
   namespace :api do
