@@ -17,6 +17,7 @@ gem 'rest-client'
 gem 'nokogiri'
 gem 'kaminari'
 
+gem 'google-webfonts-rails'
 gem 'rack-google-analytics'
 gem 'i18n-js'
 
