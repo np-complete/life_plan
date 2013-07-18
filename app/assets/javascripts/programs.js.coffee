@@ -22,29 +22,24 @@ $(document).ready ->
         $(".program.watchable").addClass("warning")
         $(".program.watching").addClass("info")
         $(".program.watching.watchable").removeClass("info").removeClass("warning").addClass("success")
-
-    update_toggle_button = ->
-        $(".toggle-watch").text("追加する")
-        $(".toggle-watch.active").text("追加済み")
     reload = ->
-        update_toggle_button()
         $("#program-controls .active").click()
 
-    update_toggle_button()
-    $(".toggle-watch").click (e) ->
-        button = $(this)
-        title_id = button.attr("title_id")
-        method = if button.hasClass("active") then "DELETE" else "PUT"
+    $(".toggle-watch").on 'switch-change', (e, data) ->
+        value = data.value
+        title_id = data.el.attr("title_id")
+        method = if value then "PUT" else "DELETE"
+        other_inputs = $(".program.title_#{title_id}")
+        return false if other_inputs.length > 0 && other_inputs.hasClass("watching") == value
         $.ajax {
             url: "/titles/#{title_id}",
             method: method
             success: (res) ->
-                if method == "DELETE"
-                    $(".toggle-watch.title_#{title_id}").removeClass("active")
-                    $(".program.title_#{title_id}").removeClass("watching")
-                else
-                    $(".toggle-watch.title_#{title_id}").addClass("active")
+                if value
                     $(".program.title_#{title_id}").addClass("watching")
+                else
+                    $(".program.title_#{title_id}").removeClass("watching")
+                $(".toggle-watch.title_#{title_id}").bootstrapSwitch('setState', value)
                 reload()
         }
 

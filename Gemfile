@@ -4,6 +4,7 @@ ruby "2.0.0"
 gem 'rails', '3.2.13'
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap-switch-rails'
 gem 'therubyracer'
 gem 'schema_plus'
 gem 'redis'
@@ -17,6 +18,7 @@ gem 'nokogiri'
 gem 'kaminari'
 
 gem 'rack-google-analytics'
+gem 'i18n-js'
 
 group :assets do
   gem 'less-rails'
