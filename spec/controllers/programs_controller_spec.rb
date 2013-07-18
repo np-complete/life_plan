@@ -25,7 +25,7 @@ describe ProgramsController do
       it "assigns user's watching title ids as @title_ids" do
         title_ids = FactoryGirl.create_list(:watching, 3, user: user).map(&:title_id)
         get :index
-        expect(assigns[:title_ids]).to eq title_ids
+        expect(assigns[:title_ids].sort).to eq title_ids.sort
       end
     end
   end
