@@ -1,0 +1,25 @@
+ja:
+  domain:
+    watchings: My番組表
+    watchables: Myチャンネル
+    all-programs: 全部見る
+
+  view:
+    global:
+      schedule: スケジュール
+      config_channels: チャンネル設定
+      config_titles: 番組設定
+      applications: アプリケーション
+      sign_out: ログアウト
+    programs:
+      title: 今日のスケジュール
+    titles:
+      tab:
+        current: 放送中
+        all: 全て
+  models:
+    program:
+      title: タイトル
+      channel: チャンネル
+      start: 開始時刻
+      subtitle: サブタイトル

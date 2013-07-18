@@ -25,20 +25,20 @@
               %li
                 = link_to :root do
                   %i.icon-list-alt
-                  スケジュール
+                  = t 'view.global.schedule'
               %li
                 = link_to :api_v1 do
                   %i.icon-file
-                  API
+                  = t 'view.global.API'
               - if user_signed_in?
                 %li
                   = link_to :channels do
                     %i.icon-cog
-                    チャンネル設定
+                    = t 'view.global.config_channels'
                 %li
                   = link_to :titles do
                     %i.icon-cog
-                    番組設定
+                    = t 'view.global.config_titles'
             - if user_signed_in?
               %ul.nav.pull-right
                 %li.dropdown
@@ -50,11 +50,11 @@
                     %li
                       = link_to :oauth_authorized_applications do
                         %i.icon-wrench
-                        アプリケーション
+                        = t 'view.global.applications'
                     %li
                       = link_to :sign_out do
                         %i.icon-remove
-                        Sign out
+                        = t 'view.global.sign_out'
             - else
               .nav.pull-right
                 = link_to user_omniauth_authorize_path(:google_oauth2) do
@@ -82,3 +82,7 @@
       \==================================================
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"
+    :coffee
+      I18n.defaultLocation = "#{I18n.default_locale}"
+      I18n.locale = "#{I18n.locale}"
+
