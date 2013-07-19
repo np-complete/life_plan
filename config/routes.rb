@@ -3,7 +3,8 @@ LifePlan::Application.routes.draw do
     controllers :applications => 'oauth/applications'
   end
 
-  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks" } do
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks" }
+  as :users do
     get 'sign_out', :to => 'devise/sessions#destroy'
   end
 
