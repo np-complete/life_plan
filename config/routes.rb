@@ -4,7 +4,7 @@ LifePlan::Application.routes.draw do
   end
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks" }
-  as :users do
+  as :user do
     get 'sign_out', :to => 'devise/sessions#destroy'
   end
 
