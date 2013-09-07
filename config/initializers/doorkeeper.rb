@@ -7,7 +7,7 @@ Doorkeeper.configure do
   resource_owner_authenticator do
     # Put your resource owner authentication logic here.
     # Example implementation:
-    current_user || warden.authenticate_user!
+    current_user || warden.authenticate!
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
