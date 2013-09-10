@@ -11,7 +11,7 @@ gem 'redis'
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
-gem 'doorkeeper'
+gem 'doorkeeper', :git => 'https://github.com/applicake/doorkeeper'
 
 gem 'rest-client'
 gem 'nokogiri'
