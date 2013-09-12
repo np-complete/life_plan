@@ -1,3 +1,11 @@
+- unless user_signed_in?
+  .hero-unit
+    %h2 No Anime, No Life.
+    %p
+      ログインして充実のアニメ生活。
+      %br
+      = render 'login_google'
+
 .clearfix
   %h1.pull-left= t('view.programs.title')
   - if user_signed_in?
