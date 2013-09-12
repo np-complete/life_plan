@@ -58,12 +58,7 @@
                         = t 'view.global.sign_out'
             - else
               .nav.pull-right
-                = link_to user_omniauth_authorize_path(:google_oauth2) do
-                  .btn-group
-                    %button.btn.btn-danger
-                      %i.icon-google-plus
-                      Sign in with Google
-
+                = render 'login_google'
     .container-fluid
       .row-fluid
         .span12

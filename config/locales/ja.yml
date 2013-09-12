@@ -11,6 +11,7 @@ ja:
       config_titles: 番組設定
       applications: アプリケーション
       sign_out: ログアウト
+      welcome-message: ようこそ! まず最初にチャンネル設定をしましょう。
     programs:
       title: 今日のスケジュール
     titles:

@@ -7,5 +7,8 @@ en:
     watchables: My channel's
     all-programs: All programs
   view:
+    global:
+      welcome-message: Welcome! At first, configure channels you watch.
     programs:
       title: Today's programs
+
