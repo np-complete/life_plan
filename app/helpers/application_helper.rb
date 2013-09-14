@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 module ApplicationHelper
   def toggle_watch_button(title, watching_ids)
-    classes = ["switch", "toggle-watch", "title_#{title.id}"]
+    classes = ["make-switch", "toggle-watch", "title_#{title.id}"]
     active =  watching_ids.include?(title.id)
 
     content_tag :div, :class => classes do
