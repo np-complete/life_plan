@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Api::V1::ProgramsController do
   let(:user) { FactoryGirl.create :user }
-  let(:token) { stub :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double(:accessible? => true, :resource_owner_id => user.id) }
   let(:titles) { FactoryGirl.create_list :title, 5 }
   let(:channels) { FactoryGirl.create_list :channel, 10 }
 

@@ -14,13 +14,13 @@ describe Channel do
       ]
     }
     before do
-      ChannelGroup.destroy_all
       Channel.destroy_all
+      ChannelGroup.destroy_all
       Syobocal::API.stub(:channels).and_return(channels)
     end
     after do
-      ChannelGroup.destroy_all
       Channel.destroy_all
+      ChannelGroup.destroy_all
     end
     it 'fetch and create group' do
       lambda {
