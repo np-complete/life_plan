@@ -21,6 +21,8 @@ gem 'google-webfonts-rails'
 gem 'rack-google-analytics'
 gem 'i18n-js'
 
+gem 'meta-tags', :require => 'meta_tags'
+
 group :assets do
   gem 'less-rails'
   gem 'sass-rails',   '~> 3.2.3'

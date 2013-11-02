@@ -11,4 +11,13 @@ en:
       welcome-message: Welcome! At first, configure channels you watch.
     programs:
       title: Today's programs
+  meta:
+    title: LifePlan - schedule service for your anime-life
+    keywords:
+      - anime
+      - schedule
+      - calendar
+      - API
+      - OAuth
+    description: Schedule service for Animation, register your favorite titles. And we also provide OAuth API.
 
