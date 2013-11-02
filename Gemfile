@@ -48,4 +48,12 @@ group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
+
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'tapp'
+  gem 'quiet_assets'
+  gem 'rack-mini-profiler'
 end
