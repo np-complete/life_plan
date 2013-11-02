@@ -3,7 +3,15 @@ ja:
     watchings: My番組表
     watchables: Myチャンネル
     all-programs: 全部見る
-
+  meta:
+    title: LifePlan - アニメ生活を支援するスケジュールサービス
+    keywords:
+      - アニメ
+      - スケジュール
+      - カレンダー
+      - API
+      - OAuth
+    description: アニメのスケジュール管理サービス。お気に入りの番組を登録して見逃しを防ごう。OAuthのAPIもあるよ!
   view:
     global:
       schedule: スケジュール
