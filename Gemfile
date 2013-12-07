@@ -31,6 +31,7 @@ gem 'meta-tags', :require => 'meta_tags'
 group :production do
   gem 'mysql2'
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
