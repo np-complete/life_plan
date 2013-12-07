@@ -25,5 +25,6 @@ module LifePlan
     end
 
     config.middleware.use Rack::GoogleAnalytics, :tracker => 'UA-20908831-4'
+    config.assets.initialize_on_precompile = true
   end
 end
