@@ -1,4 +1,6 @@
+services:
+  - redis-server
 before_script:
-  - rake db:migrate
-  - rake db:test:prepare
+  - bundle exec rake db:migrate
+  - bundle exec rake db:test:prepare
 rvm: 2.0.0
