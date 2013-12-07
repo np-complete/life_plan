@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  attr_accessible :provider, :uid, :name
-
   has_many :user_channels
   has_many :channels, :through => :user_channels
   has_many :watchings

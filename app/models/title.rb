@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 class Title < ActiveRecord::Base
-  attr_accessible :id, :name, :kana, :started_at, :finished_at
-
-  default_scope { order(:kana) }
-  scope :unfinished, where(finished_at: nil)
+  default_scope -> { order(:kana) }
+  scope :unfinished, -> { where(finished_at: nil) }
 
   def self.begin_with(initial)
     where('SUBSTR(kana, 1, 1) IN (?)',  Title.initial_characters(initial))
