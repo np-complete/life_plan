@@ -1,11 +1,9 @@
 require 'syobocal'
 
 class Channel < ActiveRecord::Base
-  attr_accessible :id, :name, :channel_group_id
-
   belongs_to :channel_group
 
-  default_scope order(:id)
+  default_scope -> { order(:id) }
 
   def self.fetch_all
     channel_ids = Channel.all.map(&:id)

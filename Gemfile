@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.2'
 gem 'haml-rails'
+gem 'less-rails'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'uglifier'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-switch-rails'
 gem 'therubyracer'
@@ -22,15 +27,6 @@ gem 'rack-google-analytics'
 gem 'i18n-js'
 
 gem 'meta-tags', :require => 'meta_tags'
-
-group :assets do
-  gem 'less-rails'
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
-
-gem 'jquery-rails'
 
 group :production do
   gem 'mysql2'
