@@ -16,7 +16,7 @@ LifePlan::Application.routes.draw do
 
   namespace :api do
     get '/v1', :to => "documents#v1"
-    namespace :v1, :format => :json do
+    namespace :v1, defaults: { format: 'json' } do
       resources :programs, :only => [:index]
     end
   end
