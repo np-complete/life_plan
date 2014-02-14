@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UserChannel do
-  subject { FactoryGirl.build(:user_channel) }
-  it { should be_valid }
+  describe :factory do
+    it { expect(build(:user_channel)).to be_valid }
+  end
 end
