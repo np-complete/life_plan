@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe Api::V1::ProgramsController do
-  let(:user) { FactoryGirl.create :user }
-  let(:token) { double(:accessible? => true, :resource_owner_id => user.id) }
-  let(:titles) { FactoryGirl.create_list :title, 5 }
-  let(:channels) { FactoryGirl.create_list :channel, 10 }
+  let(:user) { create :user }
+  let(:token) { double :accessible? => true, :resource_owner_id => user.id }
+  let(:titles) { create_list :title, 5 }
+  let(:channels) { create_list :channel, 10 }
 
   def program_stub(opt = {})
     opt = {no: 1, subtitle: 'subtitle', start_at: Time.at(1)}.merge(opt)
@@ -22,8 +22,8 @@ describe Api::V1::ProgramsController do
           program_stub(title: titles.first, channel: channels.last ),
           program_stub(title: titles.last,  channel: channels.last )
         ] }
-      FactoryGirl.create(:watching, user: user, title: titles.first)
-      FactoryGirl.create(:user_channel, user: user, channel: channels.first)
+      create :watching, user: user, title: titles.first
+      create :user_channel, user: user, channel: channels.first
       get :index, :format => :json
       json = JSON.parse response.body
       expect(json).to eq [ {

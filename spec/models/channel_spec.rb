@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Channel do
-  subject { FactoryGirl.build(:channel) }
-  it { should be_valid }
+  describe :factory do
+    it { expect(build(:channel)).to be_valid }
+  end
 
   describe :fetch_all do
     let(:channels) {
@@ -23,15 +24,15 @@ describe Channel do
       ChannelGroup.destroy_all
     end
     it 'fetch and create group' do
-      lambda {
+      expect {
         Channel.fetch_all
-      }.should change(ChannelGroup, :count).by(3)
+      }.to change { ChannelGroup.count }.by(3)
     end
 
     it 'fetch and create channel' do
-      lambda {
+      expect {
         Channel.fetch_all
-      }.should change(Channel, :count).by(4)
+      }.to change { Channel.count }.by(4)
       expect(Channel.all.map(&:id)).to eq [1, 2, 3, 4]
     end
   end

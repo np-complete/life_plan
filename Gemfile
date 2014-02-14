@@ -16,7 +16,7 @@ gem 'redis'
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
-gem 'doorkeeper', :git => 'https://github.com/applicake/doorkeeper'
+gem 'doorkeeper'
 
 gem 'rest-client'
 gem 'nokogiri'
@@ -27,6 +27,7 @@ gem 'rack-google-analytics'
 gem 'i18n-js'
 
 gem 'meta-tags', :require => 'meta_tags'
+gem 'ikazuchi'
 
 group :production do
   gem 'mysql2'
@@ -36,23 +37,4 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
-  gem 'spork-rails'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'libnotify'
-
-  gem 'factory_girl_rails'
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-rails'
-  gem 'pry-stack_explorer'
-  gem 'pry-byebug'
-
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'tapp'
-  gem 'quiet_assets'
-  gem 'rack-mini-profiler'
 end

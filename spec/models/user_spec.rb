@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  subject { FactoryGirl.build(:user) }
-  it { should be_valid }
+  describe :factory do
+    it { expect(build(:user)).to be_valid }
+  end
 end

@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe ChannelGroup do
-  subject { FactoryGirl.build(:channel_group) }
-  it { should be_valid }
+  describe :factory do
+    it { expect(build(:channel_group)).to be_valid }
+  end
 end
