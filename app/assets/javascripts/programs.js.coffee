@@ -2,7 +2,7 @@ $(document).ready ->
     cleaning = ->
         $(".program").removeClass("info").removeClass("warning").removeClass("success")
     track_toggle = (val) ->
-        ga 'send', 'event', 'program', 'toggle' "show-#{val}"
+        ga 'send', 'event', 'program', 'toggle', "show-#{val}"
 
     $("#show-watching").click (e) ->
         cleaning()
