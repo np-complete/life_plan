@@ -25,21 +25,21 @@ $(document).ready ->
     reload = ->
         $("#program-controls .active").click()
 
-    $(".toggle-watch").on 'switch-change', (e, data) ->
-        value = data.value
-        title_id = data.el.attr("title_id")
-        method = if value then "PUT" else "DELETE"
+    $(".toggle-watch").on 'switchChange.bootstrapSwitch', (e, state) ->
+        data = $(e.target)
+        title_id = data.attr("title_id")
+        method = if state then "PUT" else "DELETE"
         other_inputs = $(".program.title_#{title_id}")
-        return false if other_inputs.length > 0 && other_inputs.hasClass("watching") == value
+        return false if other_inputs.length > 0 && other_inputs.hasClass("watching") == state
         $.ajax {
             url: "/titles/#{title_id}",
             method: method
             success: (res) ->
-                if value
+                if state
                     $(".program.title_#{title_id}").addClass("watching")
                 else
                     $(".program.title_#{title_id}").removeClass("watching")
-                $(".toggle-watch.title_#{title_id}").bootstrapSwitch('setState', value)
+                $("input[title_id=#{title_id}]").bootstrapSwitch('state', state, true)
                 reload()
         }
 
