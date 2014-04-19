@@ -4,13 +4,13 @@ ruby "2.0.0"
 gem 'rails', '4.1.0'
 gem 'haml-rails'
 gem 'less-rails'
-gem 'sass-rails'
-gem 'coffee-rails'
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap-switch-rails'
-gem 'therubyracer'
+gem 'therubyracer', platforms: :ruby
 gem 'schema_plus'
 gem 'redis'
 
