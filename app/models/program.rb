@@ -30,7 +30,12 @@ class Program
       Program.new(program)
     end
 
-    channels = Channel.find(programs.map(&:channel_id)).map{|x| [x.id, x]}
+    begin
+      channels = Channel.find(programs.map(&:channel_id)).map{|x| [x.id, x]}
+    rescue
+      Channel.fetch_all
+      channels = Channel.find(programs.map(&:channel_id)).map{|x| [x.id, x]}
+    end
     titles = Title.find(programs.map(&:title_id)).map{|x| [x.id, x]}
     programs.each do |program|
       program.channel = channels.assoc(program.channel_id).last
