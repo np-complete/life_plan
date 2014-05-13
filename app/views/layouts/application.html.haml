@@ -11,6 +11,7 @@
     = stylesheet_link_tag "application", :media => "all"
     = google_webfonts_init google: ['Cherry Swash', 'Noto Sans', 'Droid Sans', 'Droid Serif']
     = display_meta_tags
+    = favicon_link_tag "favicon.png"
   %body
     .navbar.navbar-fluid-top
       .navbar-inner
@@ -80,4 +81,3 @@
     :coffee
       I18n.defaultLocation = "#{I18n.default_locale}"
       I18n.locale = "#{I18n.locale}"
-
