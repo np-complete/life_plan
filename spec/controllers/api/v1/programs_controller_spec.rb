@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Api::V1::ProgramsController do
   let(:user) { create :user }
@@ -13,8 +13,8 @@ describe Api::V1::ProgramsController do
     Program.new(opt)
   end
 
-  describe :index do
-    it 'respond watching programs' do
+  describe "GET index" do
+    it "respond watching programs" do
       controller.stub(:doorkeeper_token) { token }
       Program.stub(:today) { [
           program_stub(title: titles.first, channel: channels.first),

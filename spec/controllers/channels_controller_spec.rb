@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ChannelsController do
   let(:user) { create :user }
   before  { sign_in user }
 
-  describe :index do
+  describe "GET index" do
     it 'assigns channel_groups as @channel_groups' do
       channel_groups = create_list :channel_group, 3
       get :index
@@ -18,14 +18,14 @@ describe ChannelsController do
     end
   end
 
-  describe :create do
+  describe "POST create" do
     it "fetch channels from syobocal" do
       expect(Channel).to receive(:fetch_all)
       post :create
     end
   end
 
-  describe :update do
+  describe "PUT update" do
     let(:channel) { create :channel }
     it "create user_channel" do
       put :update, id: channel.to_param
@@ -33,9 +33,9 @@ describe ChannelsController do
     end
   end
 
-  describe :destroy do
+  describe "DELETE destroy" do
     let(:user_channel) { create :user_channel, user: user }
-    it "create user_channel" do
+    it "delete user_channel" do
       delete :destroy, id: user_channel.channel.to_param
       expect(UserChannel.where(user_id: user.id, channel_id: user_channel.channel_id)).not_to be_exists
     end

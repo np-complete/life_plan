@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ProgramsController do
-  describe :index do
+  describe "GET index" do
     let(:programs) { [] }
     before do
       Rails.application.redis.stub(:get).with("life_plan:programs").and_return programs.to_json
@@ -12,7 +12,7 @@ describe ProgramsController do
       expect(assigns[:programs]).to eq programs
     end
 
-    describe :signed_in do
+    context "signed in" do
       let(:user) { create :user }
       before { sign_in user }
 
