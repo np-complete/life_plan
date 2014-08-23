@@ -6,14 +6,14 @@ describe Channel do
   end
 
   describe :fetch_all do
-    let(:channels) {
+    let(:channels) do
       [
         { group_id: 1, group_name: 'group_1', channel_id: 1, name: 'channel_1' },
         { group_id: 1, group_name: 'group_1', channel_id: 2, name: 'channel_2' },
         { group_id: 2, group_name: 'group_2', channel_id: 3, name: 'channel_3' },
         { group_id: 3, group_name: 'group_3', channel_id: 4, name: 'channel_4' }
       ]
-    }
+    end
     before do
       Channel.destroy_all
       ChannelGroup.destroy_all

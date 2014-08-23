@@ -19,11 +19,11 @@ class TitlesController < ApplicationController
 
   def update
     Watching.create(user_id: current_user.id, title_id: params[:id])
-    render :json => :ok
+    render json: :ok
   end
 
   def destroy
     Watching.where(user_id: current_user.id, title_id: params[:id]).delete_all
-    render :json => :ok
+    render json: :ok
   end
 end

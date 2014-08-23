@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :user do
     provider 'google'
     sequence(:uid)
-    sequence(:name) {|n| "user_#{n}" }
+    sequence(:name) { |n| "user_#{n}" }
   end
 end
