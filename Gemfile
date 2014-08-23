@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.2"
+ruby '2.1.2'
 
 gem 'rails', '4.1.5'
 gem 'sass-rails', '~> 4.0.3'
@@ -30,7 +30,7 @@ gem 'google-webfonts-rails'
 gem 'rack-google-analytics'
 gem 'i18n-js'
 
-gem 'meta-tags', :require => 'meta_tags'
+gem 'meta-tags', require: 'meta_tags'
 gem 'ikazuchi'
 
 group :production do
@@ -41,4 +41,5 @@ end
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'rubocop'
 end

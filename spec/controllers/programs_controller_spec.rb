@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 describe ProgramsController do
-  describe "GET index" do
+  describe 'GET index' do
     let(:programs) { [] }
     before do
-      allow_any_instance_of(Redis).to receive(:get).with("life_plan:programs").and_return(programs.to_json)
+      allow_any_instance_of(Redis).to receive(:get).with('life_plan:programs').and_return(programs.to_json)
     end
 
-    it "assigns all programs as @program" do
+    it 'assigns all programs as @program' do
       get :index
       expect(assigns[:programs]).to eq programs
     end
 
-    context "signed in" do
+    context 'signed in' do
       let(:user) { create :user }
       before { sign_in user }
 
