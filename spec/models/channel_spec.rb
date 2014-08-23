@@ -17,22 +17,18 @@ describe Channel do
     before do
       Channel.destroy_all
       ChannelGroup.destroy_all
-      Syobocal::API.stub(:channels).and_return(channels)
+      allow(Syobocal::API).to receive(:channels).and_return(channels)
     end
     after do
       Channel.destroy_all
       ChannelGroup.destroy_all
     end
     it 'fetch and create group' do
-      expect {
-        Channel.fetch_all
-      }.to change { ChannelGroup.count }.by(3)
+      expect { Channel.fetch_all }.to change { ChannelGroup.count }.by(3)
     end
 
     it 'fetch and create channel' do
-      expect {
-        Channel.fetch_all
-      }.to change { Channel.count }.by(4)
+      expect { Channel.fetch_all }.to change { Channel.count }.by(4)
       expect(Channel.all.map(&:id)).to eq [1, 2, 3, 4]
     end
   end

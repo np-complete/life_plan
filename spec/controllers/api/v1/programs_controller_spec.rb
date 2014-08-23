@@ -15,13 +15,13 @@ describe Api::V1::ProgramsController do
 
   describe "GET index" do
     it "respond watching programs" do
-      controller.stub(:doorkeeper_token) { token }
-      Program.stub(:today) { [
+      allow(controller).to receive(:doorkeeper_token) { token }
+      expect(Program).to receive(:today).and_return([
           program_stub(title: titles.first, channel: channels.first),
           program_stub(title: titles.last,  channel: channels.first),
           program_stub(title: titles.first, channel: channels.last ),
           program_stub(title: titles.last,  channel: channels.last )
-        ] }
+        ])
       create :watching, user: user, title: titles.first
       create :user_channel, user: user, channel: channels.first
       get :index, :format => :json
