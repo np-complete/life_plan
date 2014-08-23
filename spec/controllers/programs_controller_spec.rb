@@ -4,7 +4,7 @@ describe ProgramsController do
   describe "GET index" do
     let(:programs) { [] }
     before do
-      Rails.application.redis.stub(:get).with("life_plan:programs").and_return programs.to_json
+      allow_any_instance_of(Redis).to receive(:get).with("life_plan:programs").and_return(programs.to_json)
     end
 
     it "assigns all programs as @program" do
