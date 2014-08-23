@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Api::V1::ProgramsController do
   let(:user) { create :user }
-  let(:token) { double :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double :accessible? => true, :resource_owner_id => user.id, :acceptable? => true }
   let(:titles) { create_list :title, 5 }
   let(:channels) { create_list :channel, 10 }
 
