@@ -17,6 +17,7 @@ gem 'less-rails'
 gem 'bootstrap-switch-rails'
 gem 'schema_plus'
 gem 'redis'
+gem 'dotenv-rails'
 
 gem 'devise'
 gem 'omniauth-google-oauth2'
