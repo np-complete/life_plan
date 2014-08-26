@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   def self.find_for_google_oauth2(access_token, _current_user)
     data = access_token.info
     user = User.where(provider: 'google', uid: access_token[:uid]).first
-    user = User.create(name: data['name'], uid: access_token[:uid], provider: 'google') unless user
+    user = User.create(name: data[:name], uid: access_token[:uid], provider: 'google') unless user
     user
   end
 end
