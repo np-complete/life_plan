@@ -4,6 +4,7 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "LifePlan"
     = csrf_meta_tags
     / Le HTML5 shim, for IE6-8 support of HTML elements
     /[if lt IE 9]
@@ -12,59 +13,59 @@
     = google_webfonts_init google: ['Cherry Swash', 'Noto Sans', 'Droid Sans', 'Droid Serif']
     = display_meta_tags
     = favicon_link_tag "favicon.png"
+
   %body
-    .navbar.navbar-fluid-top
-      .navbar-inner
-        .container-fluid
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand(href="/") LifePlan
-          .container.nav-collapse
-            %ul.nav
-              %li
-                = link_to :root do
-                  %i.icon-list-alt
-                  = t 'view.global.schedule'
-              %li
-                = link_to :api_v1 do
-                  %i.icon-file
-                  = t 'view.global.API'
-              - if user_signed_in?
-                %li
-                  = link_to :channels do
-                    %i.icon-cog
-                    = t 'view.global.config_channels'
-                %li
-                  = link_to :titles do
-                    %i.icon-cog
-                    = t 'view.global.config_titles'
+    .navbar.navbar-default.navbar-static-top
+      .container
+        %button.navbar-toggle(type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse")
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand(href="/") LifePlan
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          %ul.nav.navbar-nav
+            %li
+              = link_to :root do
+                = icon 'list-alt'
+                = t 'view.global.schedule'
+            %li
+              = link_to :api_v1 do
+                = icon 'file'
+                = t 'view.global.API'
             - if user_signed_in?
-              %ul.nav.pull-right
-                %li.dropdown
-                  %a.dropdown-toggle(href="#" data-toggle="dropdown")
-                    %i.icon-user
-                    = current_user.name
-                    .caret
-                  %ul.dropdown-menu
-                    %li
-                      = link_to :oauth_authorized_applications do
-                        %i.icon-wrench
-                        = t 'view.global.applications'
-                    %li
-                      = link_to :sign_out do
-                        %i.icon-remove
-                        = t 'view.global.sign_out'
-            - else
-              .nav.pull-right
-                = render 'login_google'
-    .container-fluid
-      .row-fluid
-        .span12
+              %li
+                = link_to :channels do
+                  = icon 'cog'
+                  = t 'view.global.config_channels'
+              %li
+                = link_to :titles do
+                  = icon 'cog'
+                  = t 'view.global.config_titles'
+          - if user_signed_in?
+            %ul.nav.navbar-nav.navbar-right
+              %li.dropdown
+                %a.dropdown-toggle(href="#" data-toggle="dropdown")
+                  = icon 'user'
+                  = current_user.name
+                  .caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to :oauth_authorized_applications do
+                      = icon 'wrench'
+                      = t 'view.global.applications'
+                  %li
+                    = link_to :sign_out do
+                      = icon 'remove'
+                      = t 'view.global.sign_out'
+          - else
+            .nav.navbar-btn.navbar-right
+              = render 'login_google'
+
+    .container
+      .row
+        .col-lg-12
           = bootstrap_flash
           = yield
-
       %footer.pull-right
         %p
           &copy; masarakki
@@ -73,10 +74,7 @@
           = link_to "twitter", "http://twitter.com/masarakki"
           \/
           = mail_to "masarakki@np-complete-doj.in", "mail"
-    /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
+
     = javascript_include_tag "application"
     :coffee
       I18n.defaultLocation = "#{I18n.default_locale}"

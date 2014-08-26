@@ -1,14 +1,15 @@
 %h1= t 'view.global.config_titles'
 
-.tabbable.tabs-left
-  %ul#title-group.nav.nav-tabs
+.col-xs-2
+  %ul#title-group.nav.nav-pills.nav-stacked
     %li
-      = link_to t('view,titles.tab.current'), titles_path
+      = link_to t('view.titles.tab.current'), titles_path
       = link_to t('view.titles.tab.all'), initial_titles_path('all')
     - %w{あ か さ た な は ま や ら わ}.each do |initial|
       %li
         = link_to initial, initial_titles_path(initial)
 
+.col-xs-10
   .tab-content
     = paginate @titles
 

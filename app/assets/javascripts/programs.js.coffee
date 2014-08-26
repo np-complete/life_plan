@@ -3,19 +3,18 @@ $(document).ready ->
         $(".program").removeClass("info").removeClass("warning").removeClass("success")
     track_toggle = (val) ->
         ga 'send', 'event', 'program', 'toggle', "show-#{val}"
-
-    $("#show-watching").click (e) ->
+    $("#show-watching").change (e) ->
         cleaning()
         track_toggle 'programs'
         $("#programs").attr("class", "my-programs")
 
-    $("#show-watchable").click (e) ->
+    $("#show-watchable").change (e) ->
         cleaning()
         track_toggle 'channels'
         $("#programs").attr("class", "my-channels")
         $(".watching").addClass("info")
 
-    $("#show-all").click (e) ->
+    $("#show-all").change (e) ->
         cleaning()
         track_toggle 'all'
         $("#programs").attr("class", "all-programs")
