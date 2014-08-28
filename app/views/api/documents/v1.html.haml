@@ -1,4 +1,4 @@
-.span8
+.col-md-8
   %h1 API Document # Ver.1
 
   .lead
@@ -30,9 +30,8 @@
     %dd
       %pre.prettyprint= JSON.pretty_unparse @programs
 
-.span4
-  .affix.well
-    %ul.nav.nav-pills.nav-stacked
-      %li.nav-header Document of Protected Resources
-      %li= link_to "番組表", "#doc-programs"
-
+.col-md-4
+  .pannel.panel-default
+    .panel-heading Document of Protected Resources
+    %ul.list-group
+      %li.list-group-item= link_to "番組表", "#doc-programs"

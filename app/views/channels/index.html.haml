@@ -1,16 +1,17 @@
 %h1= t 'view.global.config_channels'
 
-.tabbable.tabs-left
-  %ul#channel-group.nav.nav-tabs
+.col-xs-3
+  %ul#channel-group.nav.nav-pills.nav-stacked
     - @channel_groups.each do |channel_group|
       %li(data-toggle="tab")
         = link_to channel_group.name, "#group_#{channel_group.id}", "data-toggle" => "tab"
+.col-xs-9
   .tab-content#channel-list
     - @channel_groups.each do |channel_group|
       .tab-pane(id="group_#{channel_group.id}")
         %h4= channel_group.name
         - channel_group.channels.each do |channel|
           - if @user_channel_ids.include?(channel.id)
-            %button.btn.span3.channel-toggle.active(channel-id="#{channel.id}" data-toggle="button")= channel.name
+            %button.btn.btn-default.col-md-3.channel-toggle.active(channel-id="#{channel.id}" data-toggle="button")= channel.name
           - else
-            %button.btn.span3.channel-toggle(channel-id="#{channel.id}" data-toggle="button")= channel.name
+            %button.btn.btn-default.col-md-3.channel-toggle(channel-id="#{channel.id}" data-toggle="button")= channel.name

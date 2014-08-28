@@ -1,5 +1,5 @@
 - unless user_signed_in?
-  .hero-unit
+  .jumbotron
     %h2 No Anime, No Life.
     %p
       ログインして充実のアニメ生活。
@@ -9,10 +9,16 @@
 .clearfix
   %h1.pull-left= t('view.programs.title')
   - if user_signed_in?
-    #program-controls.pull-right.btn-group(data-toggle="buttons-radio")
-      %button.btn.active#show-watching= t('domain.watchings')
-      %button.btn#show-watchable= t('domain.watchables')
-      %button.btn#show-all= t('domain.all-programs')
+    #program-controls.pull-right.btn-group(data-toggle="buttons")
+      %label.btn.btn-default.active
+        %input#show-watching(type="radio" name="programs")
+        = t 'domain.watchings'
+      %label.btn.btn-default
+        %input#show-watchable(type="radio" name="programs")
+        = t 'domain.watchables'
+      %label.btn.btn-default
+        %input#show-all(type="radio" name="programs")
+        = t 'domain.all-programs'
 
 %table.table.table-hover
   %thead
@@ -32,6 +38,3 @@
         %td= "##{program.no} #{program.subtitle}"
         - if user_signed_in?
           %td= toggle_watch_button(program.title, @title_ids)
-
-
-
