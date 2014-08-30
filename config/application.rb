@@ -29,7 +29,7 @@ module LifePlan
 
     config.middleware.use Rack::Cors do
       allow do
-        origins 'https://life-plan.np-complete-doj.in'
+        origins '*'
         resource '/assets/*', headers: :any, method: [:get, :head]
       end
     end
