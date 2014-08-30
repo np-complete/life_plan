@@ -31,6 +31,7 @@ gem 'kaminari'
 gem 'google-webfonts-rails'
 gem 'rack-google-analytics'
 gem 'i18n-js'
+gem 'rack-cors'
 
 gem 'meta-tags', require: 'meta_tags'
 gem 'ikazuchi'
