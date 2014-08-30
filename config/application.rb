@@ -26,12 +26,5 @@ module LifePlan
 
     config.middleware.use Rack::GoogleAnalytics, tracker: 'UA-20908831-4', advertising: true
     config.assets.initialize_on_precompile = true
-
-    config.middleware.use Rack::Cors do
-      allow do
-        origins '*'
-        resource '/assets/*', headers: :any, method: [:get, :head]
-      end
-    end
   end
 end
