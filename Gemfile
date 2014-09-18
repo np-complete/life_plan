@@ -44,4 +44,5 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rubocop'
+  gem 'coveralls', require: false
 end
