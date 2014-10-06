@@ -18,7 +18,7 @@ Style/Documentation:
 Style/GuardClause:
   Enabled: false
 Style/RegexpLiteral:
-  MaxSlashes: 0
+  Enabled: false
 
 # Offense count: 1
 Metrics/CyclomaticComplexity:
