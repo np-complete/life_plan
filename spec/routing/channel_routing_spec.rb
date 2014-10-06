@@ -3,6 +3,7 @@ require 'rails_helper'
 describe ChannelsController do
   it 'routes to #index' do
     expect(get: '/channels').to route_to('channels#index')
+    expect(get: '/channels.json').to route_to('channels#index', format: 'json')
   end
 
   it 'routes to #create' do

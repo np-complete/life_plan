@@ -1,7 +1,11 @@
 class ChannelsController < ApplicationController
+  respond_to :html, :json
+  before_action :authenticate_user!, only: [:create, :update, :destroy]
+
   def index
     @channel_groups = ChannelGroup.includes(:channels)
-    @user_channel_ids = current_user.channels.map(&:id)
+    @user_channel_ids = user_signed_in? ? current_user.channels.map(&:id) : []
+    respond_with @channel_groups
   end
 
   def create
