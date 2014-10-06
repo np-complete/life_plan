@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :channels, only: [:index, :create, :update, :destroy]
+  resources :programs, only: [:index]
   resources :titles, only: [:index, :update, :destroy] do
     match ':initial', to: 'titles#index', on: :collection, via: :get, as: :initial
   end
