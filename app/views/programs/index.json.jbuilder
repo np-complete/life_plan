@@ -6,7 +6,7 @@ json.array! @programs do |program|
     json.number program.no
     json.subtitle program.subtitle
   end
-  json.start_at program.start_at
+  json.start_at program.start_at.to_i
   json.channel do
     json.extract! program.channel, :id, :name
   end
