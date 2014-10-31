@@ -7,9 +7,14 @@
 
 AllCops:
   RunRailsCops: true
+  Excludes:
+    - db/schema.rb
+    - vendor/bundle/**/*
 Lint/AssignmentInCondition:
   Enabled: false
 Lint/HandleExceptions:
+  Enabled: false
+Metrics/AbcSize:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
