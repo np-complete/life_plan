@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby ENV['HEROKU_RUBY_VERSION'] if ENV['HEROKU_RUBY_VERSION']
+
+ruby ENV['CUSTOM_RUBY_VERSION'] if ENV['CUSTOM_RUBY_VERSION']
 
 gem 'rails', '4.1.7'
 gem 'sass-rails', '~> 4.0.3'
