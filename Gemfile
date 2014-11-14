@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby ENV['CUSTOM_RUBY_VERSION'] if ENV['CUSTOM_RUBY_VERSION']
+ruby '2.1.5' unless ENV['SNAP_CI']
 
 gem 'rails', '4.1.7'
 gem 'sass-rails', '~> 4.0.3'
