@@ -7,6 +7,5 @@ describe TitlesController do
       expect(get: '/titles/all').to route_to('titles#index', initial: 'all')
       expect(get: '/titles/a').to route_to('titles#index', initial: 'a')
     end
-
   end
 end

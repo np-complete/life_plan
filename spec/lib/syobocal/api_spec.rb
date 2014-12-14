@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'syobocal'
 
 describe Syobocal::API do
-
   describe 'channels' do
     let(:channels) { Syobocal::API.channels }
     it { expect(channels).to be_a Array }
