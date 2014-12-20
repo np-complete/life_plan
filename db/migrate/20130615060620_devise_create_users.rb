@@ -5,8 +5,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :uid,      null: false
       t.string :name,     null: false
       t.timestamps
+      t.index [:provider, :uid], unique: true
     end
-
-    add_index :users, [:provider, :uid], unique: true
   end
 end
