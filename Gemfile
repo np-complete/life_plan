@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.1.5'
 
-gem 'rails', '4.1.8'
-gem 'sass-rails', '~> 4.0.3'
+gem 'rails', '4.2.0'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -17,7 +17,6 @@ gem 'haml-rails'
 gem 'less-rails'
 gem 'bootstrap-switch-rails'
 gem 'font-awesome-sass'
-gem 'schema_plus'
 gem 'redis'
 gem 'dotenv-rails'
 
@@ -44,6 +43,5 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rubocop'
   gem 'coveralls', require: false
 end

@@ -11,37 +11,33 @@ module Oauth
     end
 
     def create
-      @application = current_user.oauth_applications.new(params[:application])
+      @application = current_user.oauth_applications.new(application_params)
       if @application.save
         flash[:notice] = I18n.t(:notice, scope: [:doorkeeper, :flash, :applications, :create])
-        respond_with [:oauth, @application]
+        redirect_to oauth_application_url(@application)
       else
         render :new
       end
     end
 
-    def show
-      @application = current_user.oauth_applications.find(params[:id])
-    end
-
-    def edit
-      @application = current_user.oauth_applications.find(params[:id])
-    end
-
     def update
-      @application = current_user.oauth_applications.find(params[:id])
-      if @application.update_attributes(params[:application])
+      if @application.update(application_params)
         flash[:notice] = I18n.t(:notice, scope: [:doorkeeper, :flash, :applications, :update])
-        respond_with [:oauth, @application]
+        redirect_to oauth_application_url(@application)
       else
         render :edit
       end
     end
 
     def destroy
-      @application = current_user.oauth_applications.find(params[:id])
       flash[:notice] = I18n.t(:notice, scope: [:doorkeeper, :flash, :applications, :destroy]) if @application.destroy
       redirect_to oauth_applications_url
+    end
+
+    protected
+
+    def set_application
+      @application = current_user.oauth_applications.find(params[:id])
     end
   end
 end
