@@ -6,3 +6,12 @@ rvm: 2.1.5
 script:
   - bundle exec rake spec
   - bundle exec rubocop
+deploy:
+  provider: heroku
+  api_key:
+    secure: NdvU/5quq8wEocZyzhtwZ7AHM7mVRDMVe+yWO7XJEMdsbgsWt1uQF1s5S/Q6/eVMDl96g1p0Rcq1FpJLHt3Ac29TS0HVVdrLUCEtNHStJ0MqmIZt+7lDjgOfYdIlVdUmE5EQIQoHQc6twUvLztDNdViooborXY1Onl+lla4/JQA=
+  app:
+    master: life-plan
+  on:
+    repo: np-complete/life_plan
+  run: "rake db:migrate"
