@@ -13,13 +13,13 @@ class ChannelsController < ApplicationController
     render json: :ok
   end
 
-  def update
-    UserChannel.create(user_id: current_user.id, channel_id: params[:id])
+  def update(id)
+    UserChannel.create(user_id: current_user.id, channel_id: id)
     render json: :ok
   end
 
-  def destroy
-    UserChannel.where(user_id: current_user.id, channel_id: params[:id]).delete_all
+  def destroy(id)
+    UserChannel.where(user_id: current_user.id, channel_id: id).delete_all
     render json: :ok
   end
 end
