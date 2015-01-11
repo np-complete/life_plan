@@ -13,6 +13,9 @@
   .tab-content
     = paginate @titles
 
+    - ['anime', 'radio', 'movie', 'other', 'all'].each do |media|
+      = link_to media, {media: media}, class: 'btn'
+
     %table.table.table-striped
       %thead
         %tr

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220230644) do
+ActiveRecord::Schema.define(version: 20150111133031) do
 
   create_table "channel_groups", force: :cascade do |t|
     t.string   "name",       null: false
@@ -74,15 +74,17 @@ ActiveRecord::Schema.define(version: 20141220230644) do
   add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true
 
   create_table "titles", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name",                    null: false
     t.string   "kana"
     t.datetime "started_at"
     t.datetime "finished_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "media_id",    default: 0, null: false
   end
 
   add_index "titles", ["kana"], name: "index_titles_on_kana"
+  add_index "titles", ["media_id", "kana"], name: "index_titles_on_media_id_and_kana"
 
   create_table "user_channels", force: :cascade do |t|
     t.integer  "user_id"

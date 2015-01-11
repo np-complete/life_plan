@@ -12,6 +12,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'action_args'
 gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
 gem 'less-rails'
