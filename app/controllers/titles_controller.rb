@@ -16,13 +16,13 @@ class TitlesController < ApplicationController
     end
   end
 
-  def update
-    Watching.create(user_id: current_user.id, title_id: params[:id])
+  def update(id)
+    Watching.create(user_id: current_user.id, title_id: id)
     render json: :ok
   end
 
-  def destroy
-    Watching.where(user_id: current_user.id, title_id: params[:id]).delete_all
+  def destroy(id)
+    Watching.where(user_id: current_user.id, title_id: id).delete_all
     render json: :ok
   end
 end
