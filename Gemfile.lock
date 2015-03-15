@@ -104,8 +104,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.9.7)
-    font-awesome-sass (4.3.2)
+    ffi (1.9.8)
+    font-awesome-sass (4.3.1)
       sass (~> 3.2)
     formatador (0.2.5)
     globalid (0.3.3)
@@ -113,7 +113,7 @@ GEM
     google-webfonts-rails (0.0.4)
       activesupport (> 3.2.0, < 5.0)
     growl (1.0.3)
-    guard (2.12.4)
+    guard (2.12.5)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
@@ -428,7 +428,7 @@ DEPENDENCIES
   devise
   doorkeeper
   dotenv-rails
-  font-awesome-sass
+  font-awesome-sass (= 4.3.1)
   google-webfonts-rails
   haml-rails
   i18n-js

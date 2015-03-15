@@ -17,7 +17,7 @@ gem 'twitter-bootstrap-rails'
 gem 'haml-rails'
 gem 'less-rails'
 gem 'bootstrap-switch-rails'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '4.3.1'
 gem 'redis'
 gem 'dotenv-rails'
 
