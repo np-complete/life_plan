@@ -14,7 +14,7 @@ describe TitlesController do
       others = FactoryGirl.create :title, kana: 'かかか'
       create :watching, user: user, title: titles.first
       create :watching, user: user, title: others
-      get :index, initial: 'あ'
+      get :index, initial: 'あ', format: 'json'
       expect(assigns(:watching_ids)).to eq [titles.first.id]
     end
 
@@ -22,7 +22,7 @@ describe TitlesController do
       it 'assigns unfinished titles as @titles' do
         titles = create_list :title, 3, finished_at: nil
         create_list :title, 3, finished_at: Time.now.beginning_of_year
-        get :index
+        get :index, format: 'json'
         expect(assigns(:titles)).to eq titles.sort_by(&:kana)
       end
     end
@@ -30,7 +30,7 @@ describe TitlesController do
     context 'all' do
       it 'assigns all titles as @titles' do
         titles = create_list :title, 9, finished_at: Time.now.beginning_of_year
-        get :index, initial: 'all'
+        get :index, initial: 'all', format: 'json'
         expect(assigns(:titles)).to eq titles.sort_by(&:kana)
       end
     end
@@ -42,7 +42,7 @@ describe TitlesController do
           create(:title, kana: 'いいい')
         ]
         create(:title, kana: 'かかか')
-        get :index, initial: 'あ'
+        get :index, initial: 'あ', format: 'json'
         expect(assigns(:titles)).to eq titles
       end
     end
