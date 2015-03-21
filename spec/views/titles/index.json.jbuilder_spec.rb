@@ -7,9 +7,10 @@ describe 'titles/index.json.jbuilder' do
   end
   it 'render json' do
     render
-    titles = JSON.parse(response).map { |x| OpenStruct.new(x) }
+    titles = JSON.parse(response)
     expect(titles.count).to eq 4
-    expect(titles.map(&:name)).to eq @titles.map(&:name)
-    expect(titles.map(&:watch?)).to eq [true, false, false, false]
+    expect(titles.first['id']).to eq @titles.first.id
+    expect(titles.first['name']).to eq @titles.first.name
+    expect(titles.map { |t| t['watch'] }).to eq [true, false, false, false]
   end
 end
