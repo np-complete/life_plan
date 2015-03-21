@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'titles/index' do
+describe 'titles/index.html.haml' do
   before(:each) do
     assign(:titles, Kaminari.paginate_array(FactoryGirl.create_list(:title, 4)).page(1))
     assign(:watching_ids, [])

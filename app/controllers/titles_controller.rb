@@ -1,4 +1,6 @@
 class TitlesController < ApplicationController
+  respond_to :html, :json
+
   def index(page: 1, media: nil, initial: nil)
     @titles = Title.page(page)
     case initial
@@ -11,9 +13,7 @@ class TitlesController < ApplicationController
     @titles = @titles.send(media) if media && Title::Media.valid?(media)
     @watching_ids = current_user.titles.where(id: @titles.map(&:id)).map(&:id)
 
-    respond_to do |format|
-      format.html
-    end
+    respond_with @titles
   end
 
   def update(id)
