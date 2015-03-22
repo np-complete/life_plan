@@ -1,16 +1,8 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   domain:
     watchings: My Programs
     watchables: My channel's
     all-programs: All programs
-  view:
-    global:
-      welcome-message: Welcome! At first, configure channels you watch.
-    programs:
-      title: Today's programs
   meta:
     title: LifePlan - schedule service for your anime-life
     keywords:
@@ -20,4 +12,23 @@ en:
       - API
       - OAuth
     description: Schedule service for Animation, register your favorite titles. And we also provide OAuth API.
-
+  view:
+    global:
+      schedule: Schedule
+      config_channels: Config Channels
+      config_titles: Config Titles
+      applications: Applications
+      sign_out: Sign Out
+      welcome-message: Welcome! At first, configure channels you watch.
+    programs:
+      title: Today's programs
+    titles:
+      tab:
+        current: Current
+        all: All
+  models:
+    program:
+      title: Title
+      channel: Channel
+      start: Start At
+      subtitle: Subtitle
