@@ -26,37 +26,37 @@ html(lang="en")
           ul.nav.navbar-nav
             li
               = link_to :root do
-                = icon 'list-alt'
-                = t 'view.global.schedule'
+                => icon 'list-alt'
+                => t 'view.global.schedule'
             li
               = link_to :api_v1 do
-                = icon 'file'
-                = t 'view.global.API'
+                => icon 'file'
+                => t 'view.global.API'
             - if user_signed_in?
               li
                 = link_to :channels do
-                  = icon 'cog'
-                  = t 'view.global.config_channels'
+                  => icon 'cog'
+                  => t 'view.global.config_channels'
               li
                 = link_to :titles do
-                  = icon 'cog'
-                  = t 'view.global.config_titles'
+                  => icon 'cog'
+                  => t 'view.global.config_titles'
           - if user_signed_in?
             ul.nav.navbar-nav.navbar-right
               li.dropdown
                 a.dropdown-toggle(href="#" data-toggle="dropdown")
-                  = icon 'user'
-                  = current_user.name
+                  => icon 'user'
+                  => current_user.name
                   .caret
                 ul.dropdown-menu
                   li
                     = link_to :oauth_authorized_applications do
-                      = icon 'wrench'
-                      = t 'view.global.applications'
+                      => icon 'wrench'
+                      => t 'view.global.applications'
                   li
                     = link_to :sign_out do
-                      = icon 'remove'
-                      = t 'view.global.sign_out'
+                      => icon 'remove'
+                      => t 'view.global.sign_out'
           - else
             .nav.navbar-btn.navbar-right
               = render 'login_google'
