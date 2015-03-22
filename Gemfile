@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'action_args'
 gem 'twitter-bootstrap-rails'
+gem 'slim-rails'
 gem 'haml-rails'
 gem 'less-rails'
 gem 'bootstrap-switch-rails'
