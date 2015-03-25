@@ -11,20 +11,7 @@
 
 .col-xs-10
   .tab-content
-    = paginate @titles
+    -# ['anime', 'radio', 'movie', 'other', 'all'].each do |media|
+      =# link_to media, {media: media}, class: 'btn'
 
-    - ['anime', 'radio', 'movie', 'other', 'all'].each do |media|
-      = link_to media, {media: media}, class: 'btn'
-
-    %table.table.table-striped
-      %thead
-        %tr
-          %th= t 'models.program.title'
-          %th= t 'domain.watchings'
-      %tbody
-        - @titles.each do |title|
-          %tr
-            %td= title.name
-            %td= toggle_watch_button(title, @watching_ids)
-
-    = paginate @titles
+    = react_component 'Title', options: @options

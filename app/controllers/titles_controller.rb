@@ -2,18 +2,21 @@ class TitlesController < ApplicationController
   respond_to :html, :json
 
   def index(page: 1, media: nil, initial: nil)
-    @titles = Title.page(page)
-    case initial
-    when 'all'
-    when  nil, 'current'
-      @titles = @titles.current
-    else
-      @titles = @titles.begin_with(initial) if initial
+    page = page.to_i
+    @options = { page: page, media: media, initial: initial }.compact
+    unless request.format.html?
+      @titles = Title.page(page)
+      case initial
+      when 'all'
+      when  nil, 'current'
+        @titles = @titles.current
+      else
+        @titles = @titles.begin_with(initial) if initial
+      end
+      @titles = @titles.send(media) if media && Title::Media.valid?(media)
+      @watching_ids = current_user.titles.where(id: @titles.map(&:id)).map(&:id)
     end
-    @titles = @titles.send(media) if media && Title::Media.valid?(media)
-    @watching_ids = current_user.titles.where(id: @titles.map(&:id)).map(&:id)
-
-    respond_with @titles
+    respond_with @titles || []
   end
 
   def update(id)
