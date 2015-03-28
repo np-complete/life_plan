@@ -33,7 +33,7 @@ gem 'kaminari'
 
 gem 'google-webfonts-rails'
 gem 'rack-google-analytics'
-gem 'i18n-js'
+gem 'i18n-js', github: 'fnando/i18n-js'
 gem 'react-rails', github: 'reactjs/react-rails'
 
 gem 'meta-tags', require: 'meta_tags'
