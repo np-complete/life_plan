@@ -1,7 +1,7 @@
 class TitlesController < ApplicationController
   respond_to :html, :json
 
-  def index(page: 1, media: nil, initial: nil)
+  def index(page: 1, media: nil, initial: 'current')
     page = page.to_i
     @options = { page: page, media: media, initial: initial }.compact
     unless request.format.html?
