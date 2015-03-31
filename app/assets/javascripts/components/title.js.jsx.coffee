@@ -23,10 +23,10 @@
   getInitialState: ->
     {titles: [], options: @props.options, pages: 0}
   handlePageChange: (page) ->
-    @updateState(page: page)
+    @updateOptions(page: page)
   handleInitialChange: (initial) ->
-    @updateState(page:1, initial: initial)
-  updateState: (updates) ->
+    @updateOptions(page:1, initial: initial)
+  updateOptions: (updates) ->
     options = _.extend @state.options, updates
     @setState(options: options)
     @loadJson(@pushHistoryState)
@@ -48,8 +48,8 @@
           <table className="table table-striped">
             <thead>
               <tr>
-                <th>{ I18n.t('models.program.title') }</th>
-                <th>{ I18n.t('domain.watchings') }</th>
+                <th className="col-xs-9">{ I18n.t('models.program.title') }</th>
+                <th className="col-xs-3">{ I18n.t('domain.watchings') }</th>
               </tr>
             </thead>
             <tbody>{titles}</tbody>
@@ -79,7 +79,7 @@
     evt.stopPropagation()
     evt.preventDefault()
     page = Number(evt.target.getAttribute('data-page'))
-    @props.onPageChange(page) if page >= 1 && page <= @props.pages
+    @props.onPageChange(page) if page >= 1 && page <= @props.pages && page != @props.page
   render: ->
     first_page = Math.max(@props.page - 4, 1)
     last_page = Math.min(first_page + 8, @props.pages)
