@@ -20,7 +20,6 @@ gem 'less-rails'
 gem 'bootstrap-switch-rails'
 gem 'font-awesome-sass'
 gem 'redis'
-gem 'dotenv-rails'
 gem 'multi_json'
 
 gem 'devise'
@@ -48,4 +47,5 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'coveralls', require: false
+  gem 'dotenv-rails'
 end

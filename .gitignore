@@ -15,6 +15,5 @@
 /log/*.log
 /tmp
 /coverage
-.env
 /public/javascripts
 /vendor/bundle
