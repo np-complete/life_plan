@@ -1,14 +1,13 @@
 @Title = React.createClass
   loadJson: (callback = null)->
     $.ajax
-      url: '/titles.json'
-      data: @state.options
+      url: Routes.initial_titles_path _.extend(@state.options, format: 'json')
       success: (res) =>
         @setState(res)
         callback() if callback
   pushHistoryState: ->
     if window.history && window.history.pushState
-      url = window.location.pathname + '?' + jQuery.param(page: @state.options.page)
+      url = Routes.initial_titles_path(@state.options)
       window.history.pushState(@state, null, url)
   replaceHistoryState: ->
     if window.history && window.history.replaceState
@@ -18,31 +17,59 @@
   componentDidMount: ->
     $(window).on 'popstate', @popState
     @loadJson(@replaceHistoryState)
+  initials:
+    ['current', 'all', 'あ', 'か', 'さ', 'た', 'な', 'は', 'ま', 'や', 'ら', 'わ']
 
   getInitialState: ->
     {titles: [], options: @props.options, pages: 0}
   handlePageChange: (page) ->
-    options = @state.options
-    options.page = page
+    @updateState(page: page)
+  handleInitialChange: (initial) ->
+    @updateState(page:1, initial: initial)
+  updateState: (updates) ->
+    options = _.extend @state.options, updates
     @setState(options: options)
     @loadJson(@pushHistoryState)
   render: ->
-    paginator = `<Title.Paginator pages={this.state.pages} page={this.state.options.page}  onPageChange={this.handlePageChange} />` if @state.pages > 0
+    paginator = `<Title.Paginator pages={this.state.pages} page={this.state.options.page} onPageChange={this.handlePageChange} />` if @state.pages > 0
     titles = this.state.titles.map (title) ->
       `<Title.Row key={title.id} id={title.id} name={title.name} watch={title.watch} />`
+    navs = for key in @initials
+      `<Title.Initial current={this.state.options.initial} value={key} onInitialChange={this.handleInitialChange} />`
     `<div>
-      {paginator}
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>{ I18n.t('models.program.title') }</th>
-            <th>{ I18n.t('domain.watchings') }</th>
-          </tr>
-        </thead>
-        <tbody>{titles}</tbody>
-      </table>
-      {paginator}
+      <div className="col-xs-2">
+        <ul className="nav nav-pills nav-stacked">
+          { navs }
+        </ul>
+      </div>
+      <div className="col-xs-10">
+        <div className="tab-content">
+          {paginator}
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>{ I18n.t('models.program.title') }</th>
+                <th>{ I18n.t('domain.watchings') }</th>
+              </tr>
+            </thead>
+            <tbody>{titles}</tbody>
+          </table>
+          {paginator}
+        </div>
+      </div>
     </div>`
+@Title.Initial = React.createClass
+  propTypes:
+    current: React.PropTypes.string
+    value: React.PropTypes.string
+  handleClick: (evt) ->
+    evt.stopPropagation()
+    evt.preventDefault()
+    @props.onInitialChange(@props.value)
+  render: ->
+    `<li className={ this.props.current == this.props.value ? 'active' : '' }>
+      <a href="#" onClick={this.handleClick}>{ this.props.value }</a>
+    </li>`
 
 @Title.Paginator = React.createClass
   propTypes:

@@ -32,6 +32,8 @@ gem 'kaminari'
 
 gem 'google-webfonts-rails'
 gem 'rack-google-analytics'
+gem 'js-routes'
+gem 'underscore-rails'
 gem 'i18n-js', github: 'fnando/i18n-js'
 gem 'react-rails', github: 'reactjs/react-rails'
 
