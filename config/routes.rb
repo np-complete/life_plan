@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   end
 
   resources :channels, only: [:index, :create, :update, :destroy]
-  resources :programs, only: [:index]
+  resources :programs, only: [:index] do
+    get :watching, on: :collection
+  end
+
   resources :titles, only: [:index, :update, :destroy] do
     match ':initial', to: 'titles#index', on: :collection, via: :get, as: :initial
   end
@@ -22,7 +25,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'programs#index'
+  root to: 'top#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -22,3 +22,5 @@
 //= require react_ujs
 //= require components
 //= require_tree .
+
+window.sprintf = require('sprintf-js').sprintf

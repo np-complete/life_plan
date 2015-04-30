@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "browserify": "^10.0.0",
+    "sprintf-js": "*",
+    "coffeeify": "*"
+  },
+  "devDependencies": {
+    "browserify-incremental": "*"
+  }
+}
