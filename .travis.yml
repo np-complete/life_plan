@@ -1,6 +1,7 @@
 services:
   - redis-server
 before_script:
+  - npm install
   - bundle exec rake db:migrate
 rvm: 2.2.0
 script:
