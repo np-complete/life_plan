@@ -2,12 +2,12 @@ require 'rails_helper'
 
 describe Api::V1::ProgramsController do
   let(:user) { create :user }
-  let(:token) { double :accessible? => true, :resource_owner_id => user.id, :acceptable? => true }
+  let(:token) { double accessible?: true, resource_owner_id: user.id, acceptable?: true }
   let(:titles) { create_list :title, 5 }
   let(:channels) { create_list :channel, 10 }
 
   def program_stub(opt = {})
-    opt = { no: 1, subtitle: 'subtitle', start_at: Time.at(1) }.merge(opt)
+    opt = { no: 1, subtitle: 'subtitle', start_at: Time.zone.at(1) }.merge(opt)
     opt[:title_id] = opt[:title].id if opt[:title]
     opt[:channel_id] = opt[:channel].id if opt[:channel]
     Program.new(opt)

@@ -26,10 +26,10 @@ module Syobocal
             media_id: title['Cat']
           }
           unless title['FirstYear'].blank? || title['FirstMonth'].blank?
-            title_hash[:started_at] = DateTime.new(title['FirstYear'].to_i, title['FirstMonth'].to_i, 1).beginning_of_month
+            title_hash[:started_at] = Time.zone.local(title['FirstYear'].to_i, title['FirstMonth'].to_i, 1).beginning_of_month
           end
           unless title['FirstEndYear'].blank? || title['FirstEndMonth'].blank?
-            title_hash[:finished_at] = DateTime.new(title['FirstEndYear'].to_i, title['FirstEndMonth'].to_i, 1).end_of_month
+            title_hash[:finished_at] = Time.zone.local(title['FirstEndYear'].to_i, title['FirstEndMonth'].to_i, 1).end_of_month
           end
           OpenStruct.new(title_hash)
         end
@@ -51,7 +51,7 @@ module Syobocal
             title_id: program['TID'].to_i,
             no: program['Count'].to_i,
             channel_id: program['ChID'].to_i,
-            start_at: Time.at(program['StTime'].to_i)
+            start_at: Time.zone.at(program['StTime'].to_i)
           }
           subtitle = subtitles.try(:[], program_hash[:title_id].to_s).try(:[], program_hash[:no].to_s)
           program_hash[:subtitle] = subtitle unless subtitle.blank?
@@ -63,7 +63,7 @@ module Syobocal
 
       def programs_params
         { Req: 'ProgramByDate,TitleMedium,SubTitles',
-          Start: Date.today.to_s,
+          Start: Time.zone.today.to_s,
           Days: 1 }
       end
 

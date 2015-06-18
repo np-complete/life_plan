@@ -6,6 +6,7 @@ rvm: 2.2.2
 script:
   - bundle exec rake spec
   - bundle exec rubocop
+  - bundle exec rake brakeman
 deploy:
   provider: heroku
   api_key:
