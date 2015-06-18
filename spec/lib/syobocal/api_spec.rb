@@ -35,4 +35,11 @@ describe Syobocal::API do
     end
     it { expect(programs).to be_a Array }
   end
+
+  describe '#programs_params' do
+    subject { Syobocal::API.send(:programs_params) }
+    it { expect(subject[:Req]).to eq 'ProgramByDate,TitleMedium,SubTitles' }
+    it { expect(subject[:Start]).to match(/\d{4}-\d{2}-\d{2}/) }
+    it { expect(subject[:Days]).to eq 1 }
+  end
 end
