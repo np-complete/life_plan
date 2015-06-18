@@ -21,7 +21,7 @@ describe TitlesController do
     context 'current' do
       it 'assigns unfinished titles as @titles' do
         titles = create_list :title, 3, finished_at: nil
-        create_list :title, 3, finished_at: Time.now.beginning_of_year
+        create_list :title, 3, finished_at: Time.zone.now.beginning_of_year
         get :index, format: 'json'
         expect(assigns(:titles)).to eq titles.sort_by(&:kana)
       end
@@ -29,7 +29,7 @@ describe TitlesController do
 
     context 'all' do
       it 'assigns all titles as @titles' do
-        titles = create_list :title, 9, finished_at: Time.now.beginning_of_year
+        titles = create_list :title, 9, finished_at: Time.zone.now.beginning_of_year
         get :index, initial: 'all', format: 'json'
         expect(assigns(:titles)).to eq titles.sort_by(&:kana)
       end
