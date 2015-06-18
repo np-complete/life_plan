@@ -13,9 +13,7 @@ module Syobocal
       end
 
       def programs
-        query = { Req: 'ProgramByDate,TitleMedium,SubTitles',
-                  Start: Date.today.to_s,
-                  Days: 1 }.to_query
+        query = programs_params.to_query
         response = RestClient.get "http://cal.syoboi.jp/json?#{query}", user_agent: ua
         fail unless response.code == 200
         json = JSON.parse(response.body)
@@ -62,6 +60,12 @@ module Syobocal
       end
 
       protected
+
+      def programs_params
+        { Req: 'ProgramByDate,TitleMedium,SubTitles',
+          Start: Date.today.to_s,
+          Days: 1 }
+      end
 
       def channel_data(channel)
         {
