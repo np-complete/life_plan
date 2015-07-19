@@ -1,11 +1,14 @@
+language: ruby
+rvm: 2.2.2
+sudo: false
+cache: bundler
 services:
   - redis-server
 before_script:
   - bundle exec rake db:migrate
-rvm: 2.2.2
 script:
-  - bundle exec rake spec
   - bundle exec rubocop
+  - bundle exec rake spec
   - bundle exec rake brakeman
 deploy:
   provider: heroku
