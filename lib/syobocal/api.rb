@@ -18,13 +18,28 @@ module Syobocal
         fail unless response.code == 200
         json = JSON.parse(response.body)
         subtitles = json['SubTitles']
-        titles = json['Titles'].map(&:last).map do |title|
-          title_hash = {
-            id: title['TID'].to_i,
-            name: title['Title'],
-            kana: title['TitleYomi'],
-            media_id: title['Cat']
-          }
+
+        titles = titles_from_json(json)
+        stored_titles = Title.where(id: titles.map(&:id)).map { |x| [x.id, x] }
+        titles.each { |title| create_or_update_title(title, stored_titles) }
+
+        programs_from_json(json, subtitles)
+      end
+
+      protected
+
+      def create_or_update_title(title, stored_titles)
+        stored_title = stored_titles.assoc(title.id).try(:last)
+        if stored_title
+          stored_title.update(title.to_h) unless title.to_h.all? { |key, value| stored_title.send(key) == value }
+        else
+          Title.create(title.to_h)
+        end
+      end
+
+      def titles_from_json(json)
+        json['Titles'].map(&:last).map do |title|
+          title_hash = { id: title['TID'].to_i, name: title['Title'], kana: title['TitleYomi'], media_id: title['Cat'] }
           unless title['FirstYear'].blank? || title['FirstMonth'].blank?
             title_hash[:started_at] = Time.zone.local(title['FirstYear'].to_i, title['FirstMonth'].to_i, 1).beginning_of_month
           end
@@ -33,33 +48,16 @@ module Syobocal
           end
           OpenStruct.new(title_hash)
         end
+      end
 
-        stored_titles = Title.where(id: titles.map(&:id)).map { |x| [x.id, x] }
-
-        titles.each do |title|
-          stored_title = stored_titles.assoc(title.id).try(:last)
-          if stored_title
-            stored_title.update(title.to_h) unless title.to_h.all? { |key, value| stored_title.send(key) == value }
-          else
-            Title.create(title.to_h)
-          end
-        end
-
+      def programs_from_json(json, subtitles = [])
         json['Programs'].map(&:last).map do |program|
-          program_hash = {
-            id: program['PID'].to_i,
-            title_id: program['TID'].to_i,
-            no: program['Count'].to_i,
-            channel_id: program['ChID'].to_i,
-            start_at: Time.zone.at(program['StTime'].to_i)
-          }
+          program_hash = { id: program['PID'].to_i, title_id: program['TID'].to_i, no: program['Count'].to_i, channel_id: program['ChID'].to_i, start_at: Time.zone.at(program['StTime'].to_i) }
           subtitle = subtitles.try(:[], program_hash[:title_id].to_s).try(:[], program_hash[:no].to_s)
           program_hash[:subtitle] = subtitle unless subtitle.blank?
           OpenStruct.new(program_hash)
         end
       end
-
-      protected
 
       def programs_params
         { Req: 'ProgramByDate,TitleMedium,SubTitles',
