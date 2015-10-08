@@ -8,7 +8,7 @@ class TitlesController < ApplicationController
       @titles = Title.page(page)
       case initial
       when 'all'
-      when  nil, 'current'
+      when nil, 'current'
         @titles = @titles.current
       else
         @titles = @titles.begin_with(initial) if initial

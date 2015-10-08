@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe ChannelsController do
   let(:user) { create :user }
-  before  { sign_in user }
+  before { sign_in user }
 
   describe 'GET index' do
     it 'assigns channel_groups as @channel_groups' do
