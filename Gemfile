@@ -41,7 +41,7 @@ gem 'meta-tags', require: 'meta_tags'
 gem 'ikazuchi'
 
 group :production do
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.3.0'
   gem 'unicorn'
   gem 'rails_12factor'
 end

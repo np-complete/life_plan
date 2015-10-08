@@ -259,7 +259,7 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.4.1)
+    mysql2 (0.3.20)
     nenv (0.2.0)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
@@ -505,7 +505,7 @@ DEPENDENCIES
   less-rails
   meta-tags
   multi_json
-  mysql2
+  mysql2 (~> 0.3.0)
   nokogiri
   omniauth-google-oauth2
   rack-google-analytics
