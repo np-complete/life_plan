@@ -6,13 +6,7 @@ class TitlesController < ApplicationController
     @options = { page: page, media: media, initial: initial }.compact
     unless request.format.html?
       @titles = Title.page(page)
-      case initial
-      when 'all'
-      when nil, 'current'
-        @titles = @titles.current
-      else
-        @titles = @titles.begin_with(initial) if initial
-      end
+      filter_by_initial(initial)
       @titles = @titles.send(media) if media && Title::Media.valid?(media)
       @watching_ids = current_user.titles.where(id: @titles.map(&:id)).map(&:id)
     end
@@ -27,5 +21,17 @@ class TitlesController < ApplicationController
   def destroy(id)
     Watching.where(user_id: current_user.id, title_id: id).delete_all
     render json: :ok
+  end
+
+  protected
+
+  def filter_by_initial(initial)
+    case initial
+    when 'all'
+    when nil, 'current'
+      @titles = @titles.current
+    else
+      @titles = @titles.begin_with(initial) if initial
+    end
   end
 end

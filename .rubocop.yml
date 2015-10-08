@@ -1,33 +1,17 @@
 AllCops:
   RunRailsCops: true
-  Excludes:
+  Exclude:
     - db/schema.rb
     - vendor/bundle/**/*
     - bin/*
-Lint/AssignmentInCondition:
-  Enabled: false
-Lint/HandleExceptions:
-  Enabled: false
 Metrics/AbcSize:
   Enabled: false
 Metrics/LineLength:
   Enabled: false
 Style/Documentation:
   Enabled: false
-Style/GuardClause:
-  Enabled: false
-Style/RegexpLiteral:
-  Enabled: false
-
-# Offense count: 1
 Metrics/CyclomaticComplexity:
   Max: 9
-
-# Offense count: 7
-# Configuration parameters: CountComments.
 Metrics/MethodLength:
-  Max: 44
-
-# Offense count: 1
-Metrics/PerceivedComplexity:
-  Max: 10
+  Exclude:
+    - db/migrate/*
