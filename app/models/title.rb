@@ -20,7 +20,7 @@ class Title < ActiveRecord::Base
   end
 
   def self.begin_with(initial)
-    where('SUBSTR(kana, 1, 1) IN (?)',  Title.initial_characters(initial))
+    where('SUBSTR(kana, 1, 1) IN (?)', Title.initial_characters(initial))
   end
 
   def self.initial_characters(initial)
