@@ -12,11 +12,11 @@ class Program
   def start_at=(time)
     case time
     when String
-      time = Time.zone.parse(time)
+      time = ActiveSupport::TimeZone['Tokyo'].parse(time)
     when Integer
-      time = Time.zone.at(time)
+      time = ActiveSupport::TimeZone['Tokyo'].at(time)
     end
-    @start_at = time.in_time_zone(ActiveSupport::TimeZone['Tokyo'])
+    @start_at = time
   end
 
   def self.today
