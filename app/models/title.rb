@@ -4,9 +4,9 @@ class Title < ActiveRecord::Base
   scope :unfinished, -> { where(finished_at: nil) }
   scope :current, -> { unfinished.where(media_id: Media::ANIME + Media::RADIO) }
   module Media
-    ANIME = [1, 10]
-    RADIO = [2]
-    MOVIE = [8]
+    ANIME = [1, 10].freeze
+    RADIO = [2].freeze
+    MOVIE = [8].freeze
     OTHER = (0..10).to_a - ANIME - RADIO - MOVIE
 
     def self.valid?(media)
