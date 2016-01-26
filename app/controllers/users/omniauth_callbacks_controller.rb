@@ -5,10 +5,8 @@ module Users
       if @user.persisted?
         sign_in :user, @user
         flash[:notice] = t 'view.global.welcome-message'
-        redirect_to root_path
-      else
-        redirect_to root_path
       end
+      redirect_to root_path
     end
   end
 end

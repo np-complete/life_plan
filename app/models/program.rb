@@ -3,7 +3,7 @@ require 'syobocal'
 class Program
   attr_accessor :id, :title_id, :channel_id, :start_at, :channel, :title, :no, :subtitle
 
-  KEY_NAME = 'life_plan:programs'
+  KEY_NAME = 'life_plan:programs'.freeze
 
   def initialize(opt = {})
     opt.each { |k, v| send("#{k}=", v) }
