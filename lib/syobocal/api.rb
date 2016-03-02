@@ -7,7 +7,7 @@ module Syobocal
 
       def channels
         response = RestClient.get 'http://cal.syoboi.jp/mng?Action=ShowChList', user_agent: ua
-        fail unless response.code == 200
+        raise unless response.code == 200
         nokogiri = Nokogiri::HTML(response)
         nokogiri.css('table.tframe.output:eq(2) tr').map { |x| channel_data(x.css('td').map(&:text)) }.select { |x| x[:group_name].present? }
       end
@@ -15,7 +15,7 @@ module Syobocal
       def programs
         query = programs_params.to_query
         response = RestClient.get "http://cal.syoboi.jp/json?#{query}", user_agent: ua
-        fail unless response.code == 200
+        raise unless response.code == 200
         json = JSON.parse(response.body)
         subtitles = json['SubTitles']
 
