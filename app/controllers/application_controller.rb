@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
         title: t('meta.title'),
         creator: '@masarakki',
         description: t('meta.description')
-      })
+      }
+    )
   end
 end
