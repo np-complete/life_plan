@@ -14,7 +14,7 @@ describe TitlesController do
       others = FactoryGirl.create :title, kana: 'かかか'
       create :watching, user: user, title: titles.first
       create :watching, user: user, title: others
-      get :index, initial: 'あ', format: 'json'
+      get :index, params: { initial: 'あ' }, format: 'json'
       expect(assigns(:watching_ids)).to eq [titles.first.id]
     end
 
@@ -30,7 +30,7 @@ describe TitlesController do
     context 'all' do
       it 'assigns all titles as @titles' do
         titles = create_list :title, 9, finished_at: Time.zone.now.beginning_of_year
-        get :index, initial: 'all', format: 'json'
+        get :index, params: { initial: 'all' }, format: 'json'
         expect(assigns(:titles)).to eq titles.sort_by(&:kana)
       end
     end
@@ -42,7 +42,7 @@ describe TitlesController do
           create(:title, kana: 'いいい')
         ]
         create(:title, kana: 'かかか')
-        get :index, initial: 'あ', format: 'json'
+        get :index, params: { initial: 'あ' }, format: 'json'
         expect(assigns(:titles)).to eq titles
       end
     end
@@ -51,7 +51,7 @@ describe TitlesController do
   describe 'PUT update' do
     it 'create watching' do
       title = create :title
-      put :update, id: title.to_param
+      put :update, params: { id: title.to_param }
       expect(Watching.where(user_id: user.id, title_id: title.id)).to be_exists
     end
   end
@@ -59,7 +59,7 @@ describe TitlesController do
   describe 'DELETE destroy' do
     it 'delete user_channel' do
       watching = create :watching, user: user
-      delete :destroy, id: watching.title.to_param
+      delete :destroy, params: { id: watching.title.to_param }
       expect(Watching.where(user_id: user.id, title_id: watching.title_id)).not_to be_exists
     end
   end

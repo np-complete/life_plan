@@ -33,7 +33,7 @@ RSpec.describe Oauth::ApplicationsController, type: :controller do
 
   describe 'POST #create' do
     let(:attrs) { {} }
-    let(:request!) { post :create, doorkeeper_application: attrs }
+    let(:request!) { post :create, params: { doorkeeper_application: attrs } }
     it_behaves_like :require_login
     context 'valid' do
       before { sign_in user }
@@ -60,7 +60,7 @@ RSpec.describe Oauth::ApplicationsController, type: :controller do
   describe 'PUT #update' do
     let(:attrs) { {} }
     let(:application) { create :application, owner: user }
-    let(:request!) { put :update, id: application.id, doorkeeper_application: attrs }
+    let(:request!) { put :update, params: { id: application.id, doorkeeper_application: attrs } }
     it_behaves_like :require_login
 
     context 'valid' do
@@ -85,7 +85,7 @@ RSpec.describe Oauth::ApplicationsController, type: :controller do
 
   describe 'DELETE #destroy' do
     let!(:application) { create :application, owner: user }
-    let(:request!) { delete :destroy, id: application.id }
+    let(:request!) { delete :destroy, params: { id: application.id } }
     it_behaves_like :require_login
     it do
       sign_in user
