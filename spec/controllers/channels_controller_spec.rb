@@ -28,7 +28,7 @@ describe ChannelsController do
   describe 'PUT update' do
     let(:channel) { create :channel }
     it 'create user_channel' do
-      put :update, id: channel.to_param
+      put :update, params: { id: channel.to_param }
       expect(UserChannel.where(user_id: user.id, channel_id: channel.id)).to be_exists
     end
   end
@@ -36,7 +36,7 @@ describe ChannelsController do
   describe 'DELETE destroy' do
     let(:user_channel) { create :user_channel, user: user }
     it 'delete user_channel' do
-      delete :destroy, id: user_channel.channel.to_param
+      delete :destroy, params: { id: user_channel.channel.to_param }
       expect(UserChannel.where(user_id: user.id, channel_id: user_channel.channel_id)).not_to be_exists
     end
   end
